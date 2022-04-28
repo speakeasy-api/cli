@@ -10,9 +10,9 @@ import (
 	"github.com/urfave/cli/v2"
 	"gopkg.in/yaml.v2"
 
-	"github.com/speakeasy-api/go-parser/parser"
+	"github.com/speakeasy-api/parser/services/parser"
 
-	"github.com/speakeasy-api/go-parser/apipackage"
+	"github.com/speakeasy-api/parser/apipackage"
 )
 
 const (
