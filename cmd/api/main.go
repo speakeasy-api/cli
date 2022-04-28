@@ -182,7 +182,7 @@ func main() {
 		{
 			Name:    "fmt",
 			Aliases: []string{"f"},
-			Usage:   "format swag comments",
+			Usage:   "format Annotations",
 			Action: func(c *cli.Context) error {
 				searchDir := c.String(searchDirFlag)
 				excludeDir := c.String(excludeFlag)
@@ -209,7 +209,7 @@ func main() {
 					Name:    generalInfoFlag,
 					Aliases: []string{"g"},
 					Value:   "main.go",
-					Usage:   "Go file path in which 'swagger general API Info' is written",
+					Usage:   "Go file path in which 'openapi general API Info' is written",
 				},
 			},
 		},
