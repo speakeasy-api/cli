@@ -32,7 +32,7 @@ changelog:
       - '^test:'
 brews:
 - name: cli
-  homepage: https://github.com/speakeasy-api/taps
+  homepage: https://github.com/speakeasy-api/
   tap:
     owner: speakeasy-api
-    name: cli
+    name: taps
