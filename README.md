@@ -10,4 +10,4 @@ brew install speakeasy-api/homebrew-taps/cli
 ```
 
 ## Documentation
-Usage documentation for the CLI powered through the `parser` repo and hosted at docs.speakeasyapi.dev 
+Usage documentation for the CLI powered through the `parser` repo and hosted at [docs.speakeasyapi.dev](docs.speakeasyapi.dev) 
