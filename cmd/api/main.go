@@ -1,9 +1,12 @@
 package main
 
 import (
+	"context"
+	"flag"
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
 
@@ -12,7 +15,25 @@ import (
 
 	"github.com/speakeasy-api/parser/services/parser"
 
+	openapi "github.com/getkin/kin-openapi/openapi3" //for reading OpenAPI schemas
 	"github.com/speakeasy-api/parser/apipackage"
+
+	apiv1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
+	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/tools/clientcmd"
+	"k8s.io/client-go/util/homedir"
+
+	//
+	// Uncomment to load all auth plugins
+	// _ "k8s.io/client-go/plugin/pkg/client/auth"
+	//
+	// Or uncomment to load specific auth plugins
+	// _ "k8s.io/client-go/plugin/pkg/client/auth/azure"
+	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
+	// _ "k8s.io/client-go/plugin/pkg/client/auth/oidc"
+	// _ "k8s.io/client-go/plugin/pkg/client/auth/openstack"
 )
 
 const (
@@ -211,6 +232,74 @@ func main() {
 					Value:   "main.go",
 					Usage:   "Go file path in which 'openapi general API Info' is written",
 				},
+			},
+		},
+		{
+			Name:    "update",
+			Aliases: []string{"u"},
+			Usage:   "update API version",
+			Action: func(c *cli.Context) error {
+				// schemaDir := c.String(schemaDirFlag)
+				// schemaDir := "/Users/HenrySwaffield/code/parser/cmd/api/docs/openapi.yaml" //json also there...
+
+				doc, err := openapi.NewLoader().LoadFromFile("./petStoreSchema.json")
+
+				if err != nil {
+					log.Fatal(err)
+				}
+
+				//doc.Components.Responses
+
+				log.Print(doc)
+
+				log.Println(doc.Paths) //paths.
+
+				//messing around with k8:
+
+				var kubeconfig *string
+				if home := homedir.HomeDir(); home != "" {
+					kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
+				} else {
+					kubeconfig = flag.String("kubeconfig", "", "absolute path to the kubeconfig file")
+				}
+				flag.Parse()
+
+				config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
+				if err != nil {
+					panic(err)
+				}
+				clientset, err := kubernetes.NewForConfig(config)
+				if err != nil {
+					panic(err)
+				}
+
+				deploymentsClient := clientset.AppsV1().Deployments(apiv1.NamespaceDefault)
+
+				list, err := deploymentsClient.List(context.TODO(), metav1.ListOptions{})
+
+				log.Println(list) // this is a hefty chunk of text, but it shows my toy services, which is good.
+
+				/*
+					prints:
+						[]Deployment{Deployment{ObjectMeta:{toy-go-server  default  7e44a0c9-6d77-4231-afcf-3f113c15f9dc 2110548 11 2022-05-05 15:26:44 -0700 PDT <nil> <nil> map[app:toy-go-service component:server] map[deployment.kubernetes.io/revision:5 kubectl.kubernetes.io/last-applied-configuration:{"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"toy-go-service","component":"server"},"name":"toy-go-server","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"toy-go-service","component":"server"}},"template":{"metadata":{"labels":{"app":"toy-go-service","component":"server"}}, ... and so on
+				*/
+
+				ingressClient := clientset.NetworkingV1().Ingresses("default")
+
+				log.Println(ingressClient.List(context.TODO(), metav1.ListOptions{}))
+
+				/*
+									prints:
+										[]Ingress{Ingress{ObjectMeta:{toy-go-service  default  15e20126-6bac-4912-89bd-7a0db04c2b78 2111037 2 2022-05-05 18:25:37 -0700 PDT <nil> <nil> map[] map[ingress.kubernetes.io/backends:{"k8s1-c3a86ceb-default-toy-go-service-8080-c12d7085":"HEALTHY","k8s1-c3a86ceb-default-toy-go-service-v3-8080-8ff93136":"HEALTHY"} ingress.kubernetes.io/forwarding-rule:k8s2-fr-ct54ecng-default-toy-go-service-k1mkdcr6 ingress.kubernetes.io/target-proxy:k8s2-tp-ct54ecng-default-toy-go-service-k1mkdcr6 ingress.kubernetes.io/url-map:k8s2-um-ct54ecng-default-toy-go-service-k1mkdcr6 kubectl.kubernetes.io/last-applied-configuration:{"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"name":"toy-go-service","namespace":"default"},"spec":{"defaultBackend":{"service":{"name":"toy-go-service","port":{"number":8080}}},"rules":[{"http":{"paths":[{"backend":{"service":{"name":"toy-go-service-v3","port":{"number":8080}}},"path":"/pet","pathType":"ImplementationSpecific"},{"backend":{"service":{"name":"toy-go-service","port":{"number":8080}}},"path":"/bike","pathType":"ImplementationSpecific"}]}}]},"status":{"loadBalancer":{}}}
+					] [] [networking.gke.io/ingress-finalizer-V2]  [{kubectl-client-side-apply Update networking.k8s.io/v1 2022-05-05 18:25:37 -0700 PDT FieldsV1 {"f:metadata":{"f:annotations":{".":{},"f:kubectl.kubernetes.io/last-applied-configuration":{}}},"f:spec":{"f:defaultBackend":{".":{},"f:service":{".":{},"f:name":{},"f:port":{".":{},"f:number":{}}}},"f:rules":{}}} } {glbc Update networking.k8s.io/v1 2022-05-05 18:26:59 -0700 PDT FieldsV1 {"f:metadata":{"f:annotations":{"f:ingress.kubernetes.io/backends":{},"f:ingress.kubernetes.io/forwarding-rule":{},"f:ingress.kubernetes.io/target-proxy":{},"f:ingress.kubernetes.io/url-map":{}},"f:finalizers":{".":{},"v:\"networking.gke.io/ingress-finalizer-V2\"":{}}},"f:status":{"f:loadBalancer":{"f:ingress":{}}}} status}]},Spec:IngressSpec{DefaultBackend:&IngressBackend{Resource:nil,Service:&IngressServiceBackend{Name:toy-go-service,Port:ServiceBackendPort{Name:,Number:8080,},},},TLS:[]IngressTLS{},Rules:[]IngressRule{IngressRule{Host:,IngressRuleValue:IngressRuleValue{HTTP:&HTTPIngressRuleValue{Paths:[]HTTPIngressPath{HTTPIngressPath{Path:/pet,Backend:IngressBackend{Resource:nil,Service:&IngressServiceBackend{Name:toy-go-service-v3,Port:ServiceBackendPort{Name:,Number:8080,},},},PathType:*ImplementationSpecific,},HTTPIngressPath{Path:/bike,Backend:IngressBackend{Resource:nil,Service:&IngressServiceBackend{Name:toy-go-service,Port:ServiceBackendPort{Name:,Number:8080,},},},PathType:*ImplementationSpecific,},},},},},},IngressClassName:nil,},Status:IngressStatus{LoadBalancer:{[{34.149.66.48  []}]},},},},} <nil> ...
+				*/
+
+				// next steps:
+				// loop through paths ^ and ensure that all those paths are added to the ingress that corresponds to this
+				// package
+				// also have all of those paths route to the same backend service
+
+				return nil
 			},
 		},
 	}
