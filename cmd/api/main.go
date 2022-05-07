@@ -239,20 +239,14 @@ func main() {
 			Aliases: []string{"u"},
 			Usage:   "update API version",
 			Action: func(c *cli.Context) error {
-				// schemaDir := c.String(schemaDirFlag)
-				// schemaDir := "/Users/HenrySwaffield/code/parser/cmd/api/docs/openapi.yaml" //json also there...
-
 				doc, err := openapi.NewLoader().LoadFromFile("./petStoreSchema.json")
 
 				if err != nil {
 					log.Fatal(err)
 				}
+				//api routes:
 
-				//doc.Components.Responses
-
-				log.Print(doc)
-
-				log.Println(doc.Paths) //paths.
+				log.Println(doc.Paths)
 
 				//messing around with k8:
 
@@ -277,7 +271,7 @@ func main() {
 
 				list, err := deploymentsClient.List(context.TODO(), metav1.ListOptions{})
 
-				log.Println(list) // this is a hefty chunk of text, but it shows my toy services, which is good.
+				log.Println(list) // this is a hefty chunk of text, but it shows toy services I made this week, which is good.
 
 				/*
 					prints:
