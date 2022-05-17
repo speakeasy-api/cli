@@ -65,7 +65,7 @@ var initFlags = []cli.Flag{
 	&cli.StringFlag{
 		Name:    outputTypesFlag,
 		Aliases: []string{"ot"},
-		Value:   "go,json,yaml",
+		Value:   "json,yaml",
 		Usage:   "Output types of generated files (opeanapi.json, opeanapi.yaml) like go,json,yaml",
 	},
 	&cli.BoolFlag{
