@@ -17,9 +17,10 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.16
-      - name: Run GoReleaser
+      - name: Go to CLI directory
         run: | 
           cd cmd/api
+      - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser
