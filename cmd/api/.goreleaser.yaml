@@ -32,7 +32,7 @@ changelog:
       - '^test:'
 brews:
 - name: speakeasy
-  homepage: https://github.com/speakeasy-api/
+  homepage: https://github.com/speakeasy-api/homebrew-taps
   tap:
     owner: speakeasy-api
     name: homewbrew-taps
