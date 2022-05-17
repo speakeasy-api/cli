@@ -10,9 +10,8 @@ import (
 	"github.com/urfave/cli/v2"
 	"gopkg.in/yaml.v2"
 
-	"github.com/speakeasy-api/parser/services/parser"
-
 	"github.com/speakeasy-api/parser/apipackage"
+	"github.com/speakeasy-api/parser/services/parser"
 )
 
 const (
@@ -169,7 +168,7 @@ func printYAML(output interface{}) error {
 
 func main() {
 	app := cli.NewApp()
-	app.Version = "v0.1.0-alpha"
+	app.Version = "v0.1.1-alpha-rc1"
 	app.Usage = "Automatically track the state of your API, Generate artifacts like OpenAPI schemas and more."
 	app.Commands = []*cli.Command{
 		{

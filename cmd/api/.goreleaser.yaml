@@ -31,8 +31,8 @@ changelog:
       - '^docs:'
       - '^test:'
 brews:
-- name: cli
+- name: speakeasy
   homepage: https://github.com/speakeasy-api/
   tap:
     owner: speakeasy-api
-    name: taps
+    name: homewbrew-taps
