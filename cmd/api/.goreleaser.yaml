@@ -37,3 +37,6 @@ brews:
     owner: speakeasy-api
     name: homewbrew-taps
     branch: main
+  commit_author:
+    name: simplesagar
+    email: sagar.batchu92@gmail.com
