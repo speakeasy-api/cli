@@ -36,3 +36,4 @@ brews:
   tap:
     owner: speakeasy-api
     name: homewbrew-taps
+    branch: main
