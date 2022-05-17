@@ -18,6 +18,8 @@ jobs:
         with:
           go-version: 1.16
       - name: Run GoReleaser
+        run: | 
+          cd cmd/api
         uses: goreleaser/goreleaser-action@v2
         with:
           distribution: goreleaser
