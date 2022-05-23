@@ -6,7 +6,7 @@ This is a shell repo that houses the CLI used for interacting with Speakeasy's o
 This CLI is available using brew: 
 
 ```bash
-brew install speakeasy-api/homebrew-taps/cli
+brew install speakeasy-api/taps/speakeasy
 ```
 
 ## Documentation
