@@ -3,7 +3,7 @@ module main
 go 1.17
 
 require (
-	github.com/speakeasy-api/parser v0.1.7-alpha
+	github.com/speakeasy-api/parser v0.1.7-alpha-debug
 	github.com/urfave/cli/v2 v2.5.1
 	gopkg.in/yaml.v2 v2.4.0
 )
