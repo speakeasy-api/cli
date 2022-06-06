@@ -10,7 +10,7 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-const testOutputDirectory = ".testOutput"
+const testOutputDirectory = ".buildTestOutput"
 
 func TestBuild(t *testing.T) {
 	defer func() {

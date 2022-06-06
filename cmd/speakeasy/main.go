@@ -28,6 +28,7 @@ const (
 	parseDepthFlag       = "parseDepth"
 	instanceNameFlag     = "instanceName"
 	overridesFileFlag    = "overridesFile"
+	apiNameFlag          = "apiNameFlag"
 )
 
 func exitNormally(diffEmpty bool) {
@@ -56,9 +57,16 @@ func main() {
 	app.Usage = "Automatically track the state of your API, Generate artifacts like OpenAPI schemas and more."
 	app.Commands = []*cli.Command{
 		{
-			Name:    "build",
+			Name:    "init",
 			Aliases: []string{"i"},
-			Usage:   "Create initial state and default schema artifacts",
+			Usage:   "Create initial state",
+			Action:  initAction,
+			Flags:   initFlags,
+		},
+		{
+			Name:    "build",
+			Aliases: []string{"b"},
+			Usage:   "Create schema artifacts",
 			Action:  buildAction,
 			Flags:   buildFlags,
 		},
