@@ -51,7 +51,7 @@ func TestInit(t *testing.T) {
 			set.String(generalInfoFlag, "fixture.go", "generalInfo")
 			set.String(outputFlag, testOutputDirectory, "output")
 
-			actual := initAction(cli.NewContext(nil, set, nil))
+			actual := buildAction(cli.NewContext(nil, set, nil))
 
 			if actual == nil {
 				if test.expected != "" {
