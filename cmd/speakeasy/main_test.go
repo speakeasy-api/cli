@@ -13,6 +13,14 @@ import (
 const testOutputDirectory = ".testOutput"
 
 func TestInit(t *testing.T) {
+	defer func() {
+		// Clean up temporary output directory.
+		err := os.RemoveAll(testOutputDirectory)
+		if err != nil {
+			panic(err)
+		}
+	}()
+
 	var tests = []struct {
 		strategy, outputTypes string
 		expected              string
@@ -20,6 +28,7 @@ func TestInit(t *testing.T) {
 		{parser.CamelCase, "json,yaml", ""},
 		{parser.SnakeCase, "json,yaml", ""},
 		{parser.PascalCase, "json,yaml", ""},
+		{parser.PascalCase, "json, yaml", ""},
 		{"invalidStrategy", "json,yaml", "not supported invalidStrategy propertyStrategy"},
 		{parser.CamelCase, "", "no output types specified"},
 	}
@@ -52,11 +61,5 @@ func TestInit(t *testing.T) {
 				t.Errorf("Got error with message %s, expected message %s", actual.Error(), test.expected)
 			}
 		})
-
-		// Clean up temporary output directory.
-		err := os.RemoveAll(testOutputDirectory)
-		if err != nil {
-			panic(err)
-		}
 	}
 }
