@@ -12,7 +12,7 @@ import (
 
 const testOutputDirectory = ".testOutput"
 
-func TestInit(t *testing.T) {
+func TestBuild(t *testing.T) {
 	defer func() {
 		// Clean up temporary output directory.
 		err := os.RemoveAll(testOutputDirectory)
