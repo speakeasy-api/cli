@@ -122,8 +122,9 @@ func initAction(c *cli.Context) error {
 		return fmt.Errorf("not supported %s propertyStrategy", strategy)
 	}
 
+	// apipackage library handles trimming white-space.
 	outputTypes := strings.Split(c.String(outputTypesFlag), ",")
-	if len(outputTypes) == 0 {
+	if len(outputTypes) == 1 && len(outputTypes[0]) == 0 {
 		return fmt.Errorf("no output types specified")
 	}
 
