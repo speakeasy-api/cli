@@ -1,21 +1,33 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	"strings"
+	"os"
+	"regexp"
 
 	"github.com/speakeasy-api/parser/apipackage"
 	"github.com/speakeasy-api/parser/services/parser"
 	"github.com/urfave/cli/v2"
+	"gopkg.in/yaml.v2"
 )
 
+type SpeakeasyConfig struct {
+	Name string
+	Spec struct {
+		Version string
+		Schemas struct {
+			Type    string
+			Version string
+			Output  string
+		}
+	}
+	Root string
+}
+
+const configOutputRegexp = "(yaml|json)"
+
 var buildFlags = []cli.Flag{
-	&cli.StringFlag{
-		Name:    generalInfoFlag,
-		Aliases: []string{"g"},
-		Value:   "main.go",
-		Usage:   "Go file path in which 'OpenAPI general API Info' is written",
-	},
 	&cli.StringFlag{
 		Name:    searchDirFlag,
 		Aliases: []string{"d"},
@@ -43,6 +55,12 @@ var buildFlags = []cli.Flag{
 		Aliases: []string{"ot"},
 		Value:   "json,yaml",
 		Usage:   "Output types of generated files (opeanapi.json, opeanapi.yaml) like go,json,yaml",
+	},
+	&cli.StringFlag{
+		Name:    configFileFlag,
+		Aliases: []string{"c"},
+		Value:   speakeasyConfigFileName,
+		Usage:   "Yaml file to load speakeasy configuration from",
 	},
 	&cli.BoolFlag{
 		Name:  parseVendorFlag,
@@ -90,6 +108,24 @@ var buildFlags = []cli.Flag{
 	},
 }
 
+func readConfig(fileName string) ([]SpeakeasyConfig, error) {
+	content, err := os.ReadFile(fileName)
+	if err != nil {
+		return []SpeakeasyConfig{}, err
+	}
+
+	reader := bytes.NewReader(content)
+	decoder := yaml.NewDecoder(reader)
+
+	var configs []SpeakeasyConfig
+	config := SpeakeasyConfig{}
+	for decoder.Decode(&config) == nil {
+		configs = append(configs, config)
+	}
+	fmt.Printf("configs: %d\n\n", len(configs))
+	return configs, nil
+}
+
 func buildAction(c *cli.Context) error {
 	strategy := c.String(propertyStrategyFlag)
 
@@ -99,27 +135,48 @@ func buildAction(c *cli.Context) error {
 		return fmt.Errorf("not supported %s propertyStrategy", strategy)
 	}
 
-	// apipackage library handles trimming white-space.
-	outputTypes := strings.Split(c.String(outputTypesFlag), ",")
-	if len(outputTypes) == 1 && len(outputTypes[0]) == 0 {
-		return fmt.Errorf("no output types specified")
+	var configs, err = readConfig(c.String(configFileFlag))
+	if err != nil {
+		return err
 	}
 
-	return apipackage.New().Build(&apipackage.Config{
-		SearchDir:           c.String(searchDirFlag),
-		Excludes:            c.String(excludeFlag),
-		MainAPIFile:         c.String(generalInfoFlag),
-		PropNamingStrategy:  strategy,
-		OutputDir:           c.String(outputFlag),
-		OutputTypes:         outputTypes,
-		ParseVendor:         c.Bool(parseVendorFlag),
-		ParseDependency:     c.Bool(parseDependencyFlag),
-		MarkdownFilesDir:    c.String(markdownFilesFlag),
-		ParseInternal:       c.Bool(parseInternalFlag),
-		GeneratedTime:       c.Bool(generatedTimeFlag),
-		CodeExampleFilesDir: c.String(codeExampleFilesFlag),
-		ParseDepth:          c.Int(parseDepthFlag),
-		InstanceName:        c.String(instanceNameFlag),
-		OverridesFile:       c.String(overridesFileFlag),
-	})
+	if len(configs) == 0 {
+		return fmt.Errorf("no valid configurations found")
+	}
+
+	for _, config := range configs {
+		r, err := regexp.Compile(configOutputRegexp)
+		if err != nil {
+			return err
+		}
+
+		outputTypes := r.FindAllString(config.Spec.Schemas.Output, -1)
+		if len(outputTypes) == 0 {
+			return fmt.Errorf("no valid output types specified")
+		}
+
+		err = apipackage.New().Build(&apipackage.Config{
+			SearchDir:          c.String(searchDirFlag),
+			Excludes:           c.String(excludeFlag),
+			MainAPIFile:        config.Root,
+			PropNamingStrategy: strategy,
+			// TODO: use the -o flag for the output dir and add property "OutputFile" to
+			// parser config to determine the output-file name.
+			OutputDir:           config.Name,
+			OutputTypes:         outputTypes,
+			ParseVendor:         c.Bool(parseVendorFlag),
+			ParseDependency:     c.Bool(parseDependencyFlag),
+			MarkdownFilesDir:    c.String(markdownFilesFlag),
+			ParseInternal:       c.Bool(parseInternalFlag),
+			GeneratedTime:       c.Bool(generatedTimeFlag),
+			CodeExampleFilesDir: c.String(codeExampleFilesFlag),
+			ParseDepth:          c.Int(parseDepthFlag),
+			InstanceName:        c.String(instanceNameFlag),
+			OverridesFile:       c.String(overridesFileFlag),
+		})
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }

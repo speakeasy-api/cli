@@ -14,23 +14,31 @@ const testOutputDirectory = ".buildTestOutput"
 
 func TestBuild(t *testing.T) {
 	defer func() {
-		// Clean up temporary output directory.
-		err := os.RemoveAll(testOutputDirectory)
+		// Clean up temporary output directories.
+		err := os.RemoveAll("another_api_name")
+		if err != nil {
+			panic(err)
+		}
+		err = os.RemoveAll("api_name")
 		if err != nil {
 			panic(err)
 		}
 	}()
 
-	var tests = []struct {
-		strategy, outputTypes string
-		expected              string
+	validConfigFile := "test_fixtures/speakeasy.yaml"
+	invalidConfigFile := "test_fixtures/invalidConfigFile.yaml"
+
+	tests := []struct {
+		configFile, strategy string
+		expected             string
 	}{
-		{parser.CamelCase, "json,yaml", ""},
-		{parser.SnakeCase, "json,yaml", ""},
-		{parser.PascalCase, "json,yaml", ""},
-		{parser.PascalCase, "json, yaml", ""},
-		{"invalidStrategy", "json,yaml", "not supported invalidStrategy propertyStrategy"},
-		{parser.CamelCase, "", "no output types specified"},
+		{validConfigFile, parser.CamelCase, ""},
+		{validConfigFile, parser.SnakeCase, ""},
+		{validConfigFile, parser.PascalCase, ""},
+		{validConfigFile, parser.PascalCase, ""},
+		{validConfigFile, "invalidStrategy", "not supported invalidStrategy propertyStrategy"},
+		{invalidConfigFile, parser.PascalCase, fmt.Sprintf("open %s: no such file or directory", invalidConfigFile)},
+		{"test_fixtures/speakeasy_with_invalid_output.yaml", parser.PascalCase, "no valid output types specified"},
 	}
 
 	for _, test := range tests {
@@ -43,13 +51,12 @@ func TestBuild(t *testing.T) {
 			}
 		}
 
-		t.Run(fmt.Sprintf("%s, %s", test.strategy, test.outputTypes), func(t *testing.T) {
+		t.Run(fmt.Sprintf("%s, %s", test.configFile, test.strategy), func(t *testing.T) {
 			set := flag.NewFlagSet("test", 0)
+			set.String(configFileFlag, test.configFile, "yaml")
 			set.String(propertyStrategyFlag, test.strategy, "strategy")
-			set.String(outputTypesFlag, test.outputTypes, "outputTypes")
 			set.String(searchDirFlag, "test_fixtures", "search")
 			set.String(generalInfoFlag, "fixture.go", "generalInfo")
-			set.String(outputFlag, testOutputDirectory, "output")
 
 			actual := buildAction(cli.NewContext(nil, set, nil))
 

@@ -41,7 +41,7 @@ func TestBuildConfigStrings(t *testing.T) {
 }
 
 func TestBuildActionStrings(t *testing.T) {
-	expectedCount := 11
+	expectedCount := 8
 	t.Run("action string count", func(t *testing.T) {
 		actual := buildActionStrings()
 

@@ -1,0 +1,17 @@
+name: api_name 
+spec:
+  version: v1 
+  schemas: 
+    type: OpenAPI3.0         
+    version: 1.0.0         
+    output: api_name.yaml,api_name.json
+root: fixture.go
+---
+name: another_api_name 
+spec: 
+  version: v1 
+  schemas: 
+    type: OpenAPI3.0         
+    version: 1.0.0         
+    output: another_api_name.yaml
+root: fixture.go  

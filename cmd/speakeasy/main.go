@@ -13,6 +13,10 @@ import (
 )
 
 const (
+	speakeasyConfigFileName = "speakeasy.yaml"
+
+	// CLI flags
+	configFileFlag       = "config"
 	searchDirFlag        = "dir"
 	excludeFlag          = "exclude"
 	generalInfoFlag      = "generalInfo"

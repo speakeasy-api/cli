@@ -23,10 +23,9 @@ var initFlags = []cli.Flag{
 }
 
 const (
-	speakeasyFileName = "speakeasy.yaml"
-	actionFileName    = ".github/workflows/speakeasy.yaml"
-	apiNameVariable   = "SPEAKEASY_API_NAME"
-	apiRootVariable   = "SPEAKEASY_API_ROOT"
+	actionFileName  = ".github/workflows/speakeasy.yaml"
+	apiNameVariable = "SPEAKEASY_API_NAME"
+	apiRootVariable = "SPEAKEASY_API_ROOT"
 )
 
 func writeSliceToFile(stringsToWrite []string, fileName string) error {
@@ -63,21 +62,17 @@ func buildActionStrings() []string {
 	downloadString := "\t\t\t- name: Download Speakeasy\n\t\t\t\tuses: speakeasy-api/speakeasy-github-action\n"
 
 	// This builds and executes the speakeasy build command
-	runString := "\t\t- name: Setup and Update API state\n\t\t\trun: |"
-	// grep pulls the line, cut removes everything but the desired string, head -1 selects only the first result
-	apiNameString := fmt.Sprintf("\t\t\t\texport %s=$(grep -E -i '^name: ([^\n].*)' speakeasy.yaml | cut -d \" \" -f 2 | head -1)", apiNameVariable)
-	rootFileString := fmt.Sprintf("\t\t\t\texport %s=$(grep -E -i 'root: ([^\n].*)' speakeasy.yaml | cut -d \" \" -f 3 | head -1)", apiRootVariable)
-	commandString := fmt.Sprintf("\t\t\t\tspeakeasy build -n $%s -g $%s -o schemas/$%s\n", apiNameVariable, apiRootVariable, apiNameVariable)
+	runString := "\t\t- name: Setup and Update API state\n\t\t\trun: speakeasy build"
 
 	// The changes should be committed
 	commitString := "\t\t- name: Commit API state\n\t\t\trun: git add schemas; git commit -m \"[no ci]Add schema files\"; git push\n"
 
-	return []string{nameString, jobsString, containerString, stepsString, checkoutString, downloadString, runString, apiNameString, rootFileString, commandString, commitString}
+	return []string{nameString, jobsString, containerString, stepsString, checkoutString, downloadString, runString, commitString}
 }
 
 func initAction(c *cli.Context) error {
 	configStrings := buildConfigStrings(c)
-	err := writeSliceToFile(configStrings, speakeasyFileName)
+	err := writeSliceToFile(configStrings, speakeasyConfigFileName)
 	if err != nil {
 		return err
 	}
