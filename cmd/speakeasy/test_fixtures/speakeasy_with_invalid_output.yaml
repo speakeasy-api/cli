@@ -1,0 +1,8 @@
+name: api_name 
+spec:
+  version: v1 
+  Schemas: 
+    type: OpenAPI3.0         
+    version: 1.0.0         
+    output: api_name.txt
+root: fixture.go
