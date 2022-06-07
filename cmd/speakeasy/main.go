@@ -169,7 +169,7 @@ func printYAML(output interface{}) error {
 
 func main() {
 	app := cli.NewApp()
-	app.Version = "v0.1.1-alpha-rc5"
+	app.Version = "v0.1.2-alpha-rc1"
 	app.Usage = "Automatically track the state of your API, Generate artifacts like OpenAPI schemas and more."
 	app.Commands = []*cli.Command{
 		{
