@@ -22,7 +22,6 @@ const (
 	generalInfoFlag      = "generalInfo"
 	propertyStrategyFlag = "propertyStrategy"
 	outputFlag           = "output"
-	outputTypesFlag      = "outputTypes"
 	parseVendorFlag      = "parseVendor"
 	parseDependencyFlag  = "parseDependency"
 	markdownFilesFlag    = "markdownFiles"

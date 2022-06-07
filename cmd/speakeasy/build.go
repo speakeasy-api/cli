@@ -51,12 +51,6 @@ var buildFlags = []cli.Flag{
 		Usage:   "Output directory for all the generated files(opeanapi.json, opeanapi.yaml)",
 	},
 	&cli.StringFlag{
-		Name:    outputTypesFlag,
-		Aliases: []string{"ot"},
-		Value:   "json,yaml",
-		Usage:   "Output types of generated files (opeanapi.json, opeanapi.yaml) like go,json,yaml",
-	},
-	&cli.StringFlag{
 		Name:    configFileFlag,
 		Aliases: []string{"c"},
 		Value:   speakeasyConfigFileName,
@@ -122,7 +116,6 @@ func readConfig(fileName string) ([]SpeakeasyConfig, error) {
 	for decoder.Decode(&config) == nil {
 		configs = append(configs, config)
 	}
-	fmt.Printf("configs: %d\n\n", len(configs))
 	return configs, nil
 }
 
