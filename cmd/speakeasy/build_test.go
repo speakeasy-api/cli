@@ -15,11 +15,7 @@ const testOutputDirectory = ".buildTestOutput"
 func TestBuild(t *testing.T) {
 	defer func() {
 		// Clean up temporary output directories.
-		err := os.RemoveAll("another_api_name")
-		if err != nil {
-			panic(err)
-		}
-		err = os.RemoveAll("api_name")
+		err := os.RemoveAll("schemas")
 		if err != nil {
 			panic(err)
 		}

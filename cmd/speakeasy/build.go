@@ -155,7 +155,7 @@ func buildAction(c *cli.Context) error {
 			PropNamingStrategy: strategy,
 			// TODO: use the -o flag for the output dir and add property "OutputFile" to
 			// parser config to determine the output-file name.
-			OutputDir:           config.Name,
+			OutputDir:           fmt.Sprintf("schemas/%s", config.Name),
 			OutputTypes:         outputTypes,
 			ParseVendor:         c.Bool(parseVendorFlag),
 			ParseDependency:     c.Bool(parseDependencyFlag),
