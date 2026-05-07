@@ -1,0 +1,9 @@
+# UploadFunctionsSecurity
+
+
+## Fields
+
+| Field                                                                                                          | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                                      | [*operations.UploadFunctionsSecurityOption1](../../../pkg/models/operations/uploadfunctionssecurityoption1.md) | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |
+| `Option2`                                                                                                      | [*operations.UploadFunctionsSecurityOption2](../../../pkg/models/operations/uploadfunctionssecurityoption2.md) | :heavy_minus_sign:                                                                                             | N/A                                                                                                            |

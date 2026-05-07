@@ -4,11 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	toolsets_client "github.com/speakeasy-api/gram/server/gen/http/toolsets/client"
-	"github.com/speakeasy-api/gram/server/gen/toolsets"
-	"github.com/speakeasy-api/gram/server/gen/types"
-	goahttp "goa.design/goa/v3/http"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	sdk "github.com/speakeasy-api/gf/go/sdk"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 type ToolsetsClientOptions struct {
@@ -17,34 +16,29 @@ type ToolsetsClientOptions struct {
 }
 
 type ToolsetsClient struct {
-	client *toolsets.Client
+	client *sdk.Gram
 }
 
 func NewToolsetsClient(options *ToolsetsClientOptions) *ToolsetsClient {
-	doer := goaSharedHTTPClient
+	return &ToolsetsClient{client: newSDK(options.Scheme, options.Host)}
+}
 
-	enc := goahttp.RequestEncoder
-	dec := goahttp.ResponseDecoder
-	restoreBody := false
+func toolsetSecurity(key string, projectSlug string) operations.GetToolsetSecurity {
+	return operations.GetToolsetSecurity{
+		Option2: &operations.GetToolsetSecurityOption2{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
+}
 
-	h := toolsets_client.NewClient(options.Scheme, options.Host, doer, enc, dec, restoreBody)
-
-	client := toolsets.NewClient(
-		h.CreateToolset(),
-		h.ListToolsets(),
-		h.ListToolsetsForOrg(),
-		h.UpdateToolset(),
-		h.DeleteToolset(),
-		h.GetToolset(),
-		h.CheckMCPSlugAvailability(),
-		h.CloneToolset(),
-		h.AddExternalOAuthServer(),
-		h.RemoveOAuthServer(),
-		h.AddOAuthProxyServer(),
-		h.UpdateOAuthProxyServer(),
-	)
-
-	return &ToolsetsClient{client: client}
+func listToolsetsSecurity(key string, projectSlug string) operations.ListToolsetsSecurity {
+	return operations.ListToolsetsSecurity{
+		Option2: &operations.ListToolsetsSecurityOption2{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
 }
 
 func (c *ToolsetsClient) GetToolset(
@@ -52,36 +46,41 @@ func (c *ToolsetsClient) GetToolset(
 	apiKey secret.Secret,
 	projectSlug string,
 	toolsetSlug string,
-) (*types.Toolset, error) {
-	slug := types.Slug(toolsetSlug)
+) (*shared.Toolset, error) {
 	key := apiKey.Reveal()
-	payload := &toolsets.GetToolsetPayload{
-		ApikeyToken:      &key,
-		SessionToken:     nil,
-		ProjectSlugInput: &projectSlug,
-		Slug:             slug,
-	}
-
-	result, err := c.client.GetToolset(ctx, payload)
+	result, err := c.client.Toolsets.GetBySlug(
+		ctx,
+		toolsetSecurity(key, projectSlug),
+		toolsetSlug,
+		nil,
+		&key,
+		&projectSlug,
+	)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get toolset: %w", err)
 	}
-
-	return result, nil
-}
-
-func (c *ToolsetsClient) ListToolsets(ctx context.Context, apiKey secret.Secret, projectSlug string) ([]*types.ToolsetEntry, error) {
-	key := apiKey.Reveal()
-	payload := &toolsets.ListToolsetsPayload{
-		ApikeyToken:      &key,
-		SessionToken:     nil,
-		ProjectSlugInput: &projectSlug,
+	if result.Toolset == nil {
+		return nil, fmt.Errorf("failed to get toolset: empty response")
 	}
 
-	result, err := c.client.ListToolsets(ctx, payload)
+	return result.Toolset, nil
+}
+
+func (c *ToolsetsClient) ListToolsets(ctx context.Context, apiKey secret.Secret, projectSlug string) ([]shared.ToolsetEntry, error) {
+	key := apiKey.Reveal()
+	result, err := c.client.Toolsets.List(
+		ctx,
+		listToolsetsSecurity(key, projectSlug),
+		nil,
+		&key,
+		&projectSlug,
+	)
 	if err != nil {
 		return nil, fmt.Errorf("failed to list toolsets: %w", err)
 	}
+	if result.ListToolsetsResult == nil {
+		return nil, fmt.Errorf("failed to list toolsets: empty response")
+	}
 
-	return result.Toolsets, nil
+	return result.ListToolsetsResult.Toolsets, nil
 }

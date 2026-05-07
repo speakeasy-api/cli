@@ -9,7 +9,7 @@
 .EXAMPLE
     .\install-cli.ps1
 .EXAMPLE
-    iwr -useb https://raw.githubusercontent.com/speakeasy-api/gram/main/install-cli.ps1 | iex
+    iwr -useb https://raw.githubusercontent.com/speakeasy-api/gf/main/install-cli.ps1 | iex
 #>
 
 param()
@@ -57,7 +57,7 @@ function Get-SystemArchitecture {
 function Get-LatestTag {
     Write-Info "Fetching latest version..."
 
-    $packageUrl = "https://raw.githubusercontent.com/speakeasy-api/gram/refs/heads/main/cli/package.json"
+    $packageUrl = "https://raw.githubusercontent.com/speakeasy-api/gf/refs/heads/main/go/cli/package.json"
 
     try {
         $response = Invoke-RestMethod -Uri $packageUrl -UseBasicParsing
@@ -165,8 +165,8 @@ function Main {
 
     # Construct download URLs
     $filename = "gram_${os}_${arch}.zip"
-    $downloadUrl = "https://github.com/speakeasy-api/gram/releases/download/${tagName}/${filename}"
-    $checksumsUrl = "https://github.com/speakeasy-api/gram/releases/download/${tagName}/checksums.txt"
+    $downloadUrl = "https://github.com/speakeasy-api/gf/releases/download/${tagName}/${filename}"
+    $checksumsUrl = "https://github.com/speakeasy-api/gf/releases/download/${tagName}/checksums.txt"
 
     # Create temporary directory
     $tmpDir = Join-Path $env:TEMP "gram-install-$(New-Guid)"

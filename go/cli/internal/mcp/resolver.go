@@ -8,9 +8,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/speakeasy-api/gram/cli/internal/api"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/server/gen/types"
+	"github.com/speakeasy-api/gf/go/cli/internal/api"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 // ToolsetInfo contains resolved MCP configuration information
@@ -126,7 +126,7 @@ func ResolveToolsetInfo(ctx context.Context, opts *ResolverOptions) (*ToolsetInf
 	return info, nil
 }
 
-func constructMCPURL(toolset *types.Toolset, baseURL string) string {
+func constructMCPURL(toolset *shared.Toolset, baseURL string) string {
 	// If toolset has a custom MCP slug, use it
 	if toolset.McpSlug != nil && *toolset.McpSlug != "" {
 		return fmt.Sprintf("%s/mcp/%s", baseURL, *toolset.McpSlug)
@@ -140,7 +140,7 @@ func constructMCPURL(toolset *types.Toolset, baseURL string) string {
 		*toolset.DefaultEnvironmentSlug)
 }
 
-func deriveAuthConfig(toolset *types.Toolset) (headerName string, envVarName string) {
+func deriveAuthConfig(toolset *shared.Toolset) (headerName string, envVarName string) {
 	// Default to standard Authorization header
 	headerName = "Authorization"
 	envVarName = ""

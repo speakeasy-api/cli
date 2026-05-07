@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/speakeasy-api/gram/cli/internal/profile"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
+	"github.com/speakeasy-api/gf/go/cli/internal/profile"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
 	"github.com/urfave/cli/v2"
 )
 
@@ -70,7 +70,7 @@ func ResolveOrgSlug(c *cli.Context, prof *profile.Profile) string {
 		return c.String("org")
 	}
 
-	if prof != nil && prof.Org != nil {
+	if prof != nil && prof.Org.Slug != "" {
 		return prof.Org.Slug
 	}
 

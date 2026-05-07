@@ -3,14 +3,14 @@
 ## Local Development
 
 1. Setup environment
-   - `export GRAM_API_URL=https://localhost:8080`
+   - `export GRAM_API_URL=http://localhost:8080`
    - `export GRAM_DASHBOARD_URL=https://localhost:5173`
    - `export GRAM_ORG=organization-123`
    - `export GRAM_PROJECT=default`
    - `export GRAM_API_KEY=<API-KEY>`
 
 2. Run desired command
-   - `cd cli`
+   - `cd go/cli`
    - `go run main.go status`
 
 ### Testing Gram Functions

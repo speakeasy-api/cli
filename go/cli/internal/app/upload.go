@@ -7,11 +7,11 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/speakeasy-api/gram/cli/internal/app/logging"
-	"github.com/speakeasy-api/gram/cli/internal/deploy"
-	"github.com/speakeasy-api/gram/cli/internal/flags"
-	"github.com/speakeasy-api/gram/cli/internal/profile"
-	"github.com/speakeasy-api/gram/cli/internal/workflow"
+	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/gf/go/cli/internal/deploy"
+	"github.com/speakeasy-api/gf/go/cli/internal/flags"
+	"github.com/speakeasy-api/gf/go/cli/internal/profile"
+	"github.com/speakeasy-api/gf/go/cli/internal/workflow"
 	"github.com/urfave/cli/v2"
 )
 

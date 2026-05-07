@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/server/gen/http/keys/client"
-	"github.com/speakeasy-api/gram/server/gen/keys"
-	goahttp "goa.design/goa/v3/http"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	sdk "github.com/speakeasy-api/gf/go/sdk"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 // KeysClientOptions configures the keys client.
@@ -19,33 +19,12 @@ type KeysClientOptions struct {
 
 // KeysClient wraps the generated keys service client.
 type KeysClient struct {
-	client *keys.Client
+	client *sdk.Gram
 }
 
 // NewKeysClient creates a new keys client.
 func NewKeysClient(options *KeysClientOptions) *KeysClient {
-	doer := goaSharedHTTPClient
-	enc := goahttp.RequestEncoder
-	dec := goahttp.ResponseDecoder
-	restoreBody := true
-
-	httpClient := client.NewClient(
-		options.Scheme,
-		options.Host,
-		doer,
-		enc,
-		dec,
-		restoreBody,
-	)
-
-	keysClient := keys.NewClient(
-		httpClient.CreateKey(),
-		httpClient.ListKeys(),
-		httpClient.RevokeKey(),
-		httpClient.VerifyKey(),
-	)
-
-	return &KeysClient{client: keysClient}
+	return &KeysClient{client: newSDK(options.Scheme, options.Host)}
 }
 
 // NewKeysClientFromURL creates a new keys client from a URL.
@@ -60,16 +39,17 @@ func NewKeysClientFromURL(apiURL *url.URL) *KeysClient {
 func (c *KeysClient) Verify(
 	ctx context.Context,
 	apiKey secret.Secret,
-) (*keys.ValidateKeyResult, error) {
+) (*shared.ValidateKeyResult, error) {
 	key := apiKey.Reveal()
-	payload := &keys.VerifyKeyPayload{
-		ApikeyToken: &key,
-	}
-
-	result, err := c.client.VerifyKey(ctx, payload)
+	result, err := c.client.Keys.Validate(ctx, operations.ValidateAPIKeySecurity{
+		ApikeyHeaderGramKey: key,
+	}, &key)
 	if err != nil {
 		return nil, fmt.Errorf("failed to verify API key: %w", err)
 	}
+	if result.ValidateKeyResult == nil {
+		return nil, fmt.Errorf("failed to verify API key: empty response")
+	}
 
-	return result, nil
+	return result.ValidateKeyResult, nil
 }

@@ -5,11 +5,10 @@ import (
 	"fmt"
 
 	"github.com/google/uuid"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/server/gen/deployments"
-	depl_client "github.com/speakeasy-api/gram/server/gen/http/deployments/client"
-	"github.com/speakeasy-api/gram/server/gen/types"
-	goahttp "goa.design/goa/v3/http"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	sdk "github.com/speakeasy-api/gf/go/sdk"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 type DeploymentsClientOptions struct {
@@ -18,30 +17,11 @@ type DeploymentsClientOptions struct {
 }
 
 type DeploymentsClient struct {
-	client *deployments.Client
+	client *sdk.Gram
 }
 
 func NewDeploymentsClient(options *DeploymentsClientOptions) *DeploymentsClient {
-	doer := goaSharedHTTPClient
-
-	enc := goahttp.RequestEncoder
-	dec := goahttp.ResponseDecoder
-	restoreBody := true // Enable body restoration to allow reading raw response on decode errors
-
-	h := depl_client.NewClient(options.Scheme, options.Host, doer, enc, dec, restoreBody)
-
-	client := deployments.NewClient(
-		h.GetDeployment(),
-		h.GetLatestDeployment(),
-		h.GetActiveDeployment(),
-		h.CreateDeployment(),
-		h.Evolve(),
-		h.Redeploy(),
-		h.ListDeployments(),
-		h.GetDeploymentLogs(),
-	)
-
-	return &DeploymentsClient{client: client}
+	return &DeploymentsClient{client: newSDK(options.Scheme, options.Host)}
 }
 
 type CreateDeploymentRequest struct {
@@ -49,41 +29,100 @@ type CreateDeploymentRequest struct {
 	NonBlocking     bool
 	ProjectSlug     string
 	IdempotencyKey  string
-	OpenAPIv3Assets []*deployments.AddOpenAPIv3DeploymentAssetForm
-	Functions       []*deployments.AddFunctionsForm
+	OpenAPIv3Assets []shared.AddOpenAPIv3DeploymentAssetForm
+	Functions       []shared.AddFunctionsForm
+}
+
+func createDeploymentSecurity(key string, projectSlug string) operations.CreateDeploymentSecurity {
+	return operations.CreateDeploymentSecurity{
+		Option1: &operations.CreateDeploymentSecurityOption1{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
+}
+
+func deploymentSecurity(key string, projectSlug string) operations.GetDeploymentSecurity {
+	return operations.GetDeploymentSecurity{
+		Option1: &operations.GetDeploymentSecurityOption1{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
+}
+
+func latestDeploymentSecurity(key string, projectSlug string) operations.GetLatestDeploymentSecurity {
+	return operations.GetLatestDeploymentSecurity{
+		Option1: &operations.GetLatestDeploymentSecurityOption1{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
+}
+
+func activeDeploymentSecurity(key string, projectSlug string) operations.GetActiveDeploymentSecurity {
+	return operations.GetActiveDeploymentSecurity{
+		Option1: &operations.GetActiveDeploymentSecurityOption1{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
+}
+
+func evolveDeploymentSecurity(key string, projectSlug string) operations.EvolveDeploymentSecurity {
+	return operations.EvolveDeploymentSecurity{
+		Option1: &operations.EvolveDeploymentSecurityOption1{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
+}
+
+func redeployDeploymentSecurity(key string, projectSlug string) operations.RedeployDeploymentSecurity {
+	return operations.RedeployDeploymentSecurity{
+		Option1: &operations.RedeployDeploymentSecurityOption1{
+			ApikeyHeaderGramKey:          key,
+			ProjectSlugHeaderGramProject: projectSlug,
+		},
+	}
 }
 
 // CreateDeployment creates a remote deployment.
 func (c *DeploymentsClient) CreateDeployment(
 	ctx context.Context,
 	req CreateDeploymentRequest,
-) (*deployments.CreateDeploymentResult, error) {
+) (*shared.CreateDeploymentResult, error) {
 	key := req.APIKey.Reveal()
 	if req.IdempotencyKey == "" {
 		req.IdempotencyKey = uuid.New().String()
 	}
-	payload := &deployments.CreateDeploymentPayload{
-		ApikeyToken:      &key,
-		NonBlocking:      &req.NonBlocking,
-		ProjectSlugInput: &req.ProjectSlug,
-		IdempotencyKey:   req.IdempotencyKey,
-		Openapiv3Assets:  req.OpenAPIv3Assets,
-		Functions:        req.Functions,
-		SessionToken:     nil,
-		GithubRepo:       nil,
-		GithubPr:         nil,
-		GithubSha:        nil,
-		ExternalID:       nil,
-		ExternalURL:      nil,
-		Packages:         nil,
-		ExternalMcps:     nil,
-	}
-	result, err := c.client.CreateDeployment(ctx, payload)
+
+	result, err := c.client.Deployments.Create(ctx, operations.CreateDeploymentRequest{
+		GramKey:        &key,
+		GramProject:    &req.ProjectSlug,
+		GramSession:    nil,
+		IdempotencyKey: req.IdempotencyKey,
+		Body: shared.CreateDeploymentRequestBody{
+			ExternalID:      nil,
+			ExternalMcps:    nil,
+			ExternalURL:     nil,
+			Functions:       req.Functions,
+			GithubPr:        nil,
+			GithubRepo:      nil,
+			GithubSha:       nil,
+			NonBlocking:     &req.NonBlocking,
+			Openapiv3Assets: req.OpenAPIv3Assets,
+			Packages:        nil,
+		},
+	}, createDeploymentSecurity(key, req.ProjectSlug))
 	if err != nil {
 		return nil, fmt.Errorf("api error: %w", err)
 	}
+	if result.CreateDeploymentResult == nil {
+		return nil, fmt.Errorf("api error: empty create deployment response")
+	}
 
-	return result, nil
+	return result.CreateDeploymentResult, nil
 }
 
 // GetDeployment retrieves a deployment by its ID.
@@ -92,40 +131,24 @@ func (c *DeploymentsClient) GetDeployment(
 	apiKey secret.Secret,
 	projectSlug string,
 	deploymentID string,
-) (*types.Deployment, error) {
+) (*shared.Deployment, error) {
 	key := apiKey.Reveal()
-	result, err := c.client.GetDeployment(ctx, &deployments.GetDeploymentPayload{
-		ApikeyToken:      &key,
-		ProjectSlugInput: &projectSlug,
-		ID:               deploymentID,
-		SessionToken:     nil,
-	})
+	result, err := c.client.Deployments.GetByID(
+		ctx,
+		deploymentSecurity(key, projectSlug),
+		deploymentID,
+		&key,
+		nil,
+		&projectSlug,
+	)
 	if err != nil {
 		return nil, fmt.Errorf("api error: %w", err)
 	}
+	if result.GetDeploymentResult == nil {
+		return nil, fmt.Errorf("api error: empty get deployment response")
+	}
 
-	return &types.Deployment{
-		ID:                   result.ID,
-		OrganizationID:       result.OrganizationID,
-		ProjectID:            result.ProjectID,
-		UserID:               result.UserID,
-		CreatedAt:            result.CreatedAt,
-		Status:               result.Status,
-		IdempotencyKey:       result.IdempotencyKey,
-		GithubRepo:           result.GithubRepo,
-		GithubPr:             result.GithubPr,
-		GithubSha:            result.GithubSha,
-		ExternalID:           result.ExternalID,
-		ExternalURL:          result.ExternalURL,
-		ClonedFrom:           result.ClonedFrom,
-		Openapiv3ToolCount:   result.Openapiv3ToolCount,
-		Openapiv3Assets:      result.Openapiv3Assets,
-		FunctionsToolCount:   result.FunctionsToolCount,
-		FunctionsAssets:      result.FunctionsAssets,
-		ExternalMcpToolCount: result.ExternalMcpToolCount,
-		Packages:             result.Packages,
-		ExternalMcps:         result.ExternalMcps,
-	}, nil
+	return deploymentFromGetResult(result.GetDeploymentResult), nil
 }
 
 // GetLatestDeployment retrieves the latest deployment for a project.
@@ -133,21 +156,23 @@ func (c *DeploymentsClient) GetLatestDeployment(
 	ctx context.Context,
 	apiKey secret.Secret,
 	projectSlug string,
-) (*types.Deployment, error) {
+) (*shared.Deployment, error) {
 	key := apiKey.Reveal()
-	result, err := c.client.GetLatestDeployment(
+	result, err := c.client.Deployments.Latest(
 		ctx,
-		&deployments.GetLatestDeploymentPayload{
-			ApikeyToken:      &key,
-			ProjectSlugInput: &projectSlug,
-			SessionToken:     nil,
-		},
+		latestDeploymentSecurity(key, projectSlug),
+		&key,
+		nil,
+		&projectSlug,
 	)
 	if err != nil {
 		return nil, fmt.Errorf("api error: %w", err)
 	}
+	if result.GetLatestDeploymentResult == nil {
+		return nil, fmt.Errorf("api error: empty latest deployment response")
+	}
 
-	return result.Deployment, nil
+	return result.GetLatestDeploymentResult.Deployment, nil
 }
 
 // GetActiveDeployment retrieves the active deployment for a project.
@@ -155,28 +180,30 @@ func (c *DeploymentsClient) GetActiveDeployment(
 	ctx context.Context,
 	apiKey secret.Secret,
 	projectSlug string,
-) (*types.Deployment, error) {
+) (*shared.Deployment, error) {
 	key := apiKey.Reveal()
-	result, err := c.client.GetActiveDeployment(
+	result, err := c.client.Deployments.Active(
 		ctx,
-		&deployments.GetActiveDeploymentPayload{
-			ApikeyToken:      &key,
-			ProjectSlugInput: &projectSlug,
-			SessionToken:     nil,
-		},
+		activeDeploymentSecurity(key, projectSlug),
+		&key,
+		nil,
+		&projectSlug,
 	)
 	if err != nil {
 		return nil, fmt.Errorf("api error: %w", err)
 	}
+	if result.GetActiveDeploymentResult == nil {
+		return nil, fmt.Errorf("api error: empty active deployment response")
+	}
 
-	return result.Deployment, nil
+	return result.GetActiveDeploymentResult.Deployment, nil
 }
 
 // EvolveRequest lists the assets to add to a deployment.
 type EvolveRequest struct {
-	OpenAPIv3Assets []*deployments.AddOpenAPIv3DeploymentAssetForm
+	OpenAPIv3Assets []shared.AddOpenAPIv3DeploymentAssetForm
 	NonBlocking     bool
-	Functions       []*deployments.AddFunctionsForm
+	Functions       []shared.AddFunctionsForm
 	APIKey          secret.Secret
 	DeploymentID    *string
 	ProjectSlug     string
@@ -186,28 +213,35 @@ type EvolveRequest struct {
 func (c *DeploymentsClient) Evolve(
 	ctx context.Context,
 	req EvolveRequest,
-) (*deployments.EvolveResult, error) {
+) (*shared.EvolveResult, error) {
 	key := req.APIKey.Reveal()
-	result, err := c.client.Evolve(ctx, &deployments.EvolvePayload{
-		ApikeyToken:            &key,
-		NonBlocking:            &req.NonBlocking,
-		ProjectSlugInput:       &req.ProjectSlug,
-		DeploymentID:           req.DeploymentID,
-		UpsertOpenapiv3Assets:  req.OpenAPIv3Assets,
-		UpsertFunctions:        req.Functions,
-		ExcludeOpenapiv3Assets: []string{},
-		ExcludeFunctions:       []string{},
-		ExcludePackages:        []string{},
-		UpsertPackages:         []*deployments.AddPackageForm{},
-		SessionToken:           nil,
-		UpsertExternalMcps:     nil,
-		ExcludeExternalMcps:    []string{},
-	})
+	result, err := c.client.Deployments.EvolveDeployment(
+		ctx,
+		evolveDeploymentSecurity(key, req.ProjectSlug),
+		shared.EvolveForm{
+			DeploymentID:           req.DeploymentID,
+			ExcludeExternalMcps:    []string{},
+			ExcludeFunctions:       []string{},
+			ExcludeOpenapiv3Assets: []string{},
+			ExcludePackages:        []string{},
+			NonBlocking:            &req.NonBlocking,
+			UpsertExternalMcps:     nil,
+			UpsertFunctions:        req.Functions,
+			UpsertOpenapiv3Assets:  req.OpenAPIv3Assets,
+			UpsertPackages:         []shared.AddPackageForm{},
+		},
+		&key,
+		nil,
+		&req.ProjectSlug,
+	)
 	if err != nil {
 		return nil, fmt.Errorf("api error: %w", err)
 	}
+	if result.EvolveResult == nil {
+		return nil, fmt.Errorf("api error: empty evolve response")
+	}
 
-	return result, nil
+	return result.EvolveResult, nil
 }
 
 // Redeploy triggers a redeployment of an existing deployment.
@@ -216,17 +250,47 @@ func (c *DeploymentsClient) Redeploy(
 	apiKey secret.Secret,
 	projectSlug string,
 	deploymentID string,
-) (*types.Deployment, error) {
+) (*shared.Deployment, error) {
 	key := apiKey.Reveal()
-	result, err := c.client.Redeploy(ctx, &deployments.RedeployPayload{
-		ApikeyToken:      &key,
-		ProjectSlugInput: &projectSlug,
-		DeploymentID:     deploymentID,
-		SessionToken:     nil,
-	})
+	result, err := c.client.Deployments.RedeployDeployment(
+		ctx,
+		redeployDeploymentSecurity(key, projectSlug),
+		shared.RedeployRequestBody{DeploymentID: deploymentID},
+		&key,
+		nil,
+		&projectSlug,
+	)
 	if err != nil {
 		return nil, fmt.Errorf("api error: %w", err)
 	}
+	if result.RedeployResult == nil {
+		return nil, fmt.Errorf("api error: empty redeploy response")
+	}
 
-	return result.Deployment, nil
+	return result.RedeployResult.Deployment, nil
+}
+
+func deploymentFromGetResult(result *shared.GetDeploymentResult) *shared.Deployment {
+	return &shared.Deployment{
+		ClonedFrom:           result.ClonedFrom,
+		CreatedAt:            result.CreatedAt,
+		ExternalID:           result.ExternalID,
+		ExternalMcpToolCount: result.ExternalMcpToolCount,
+		ExternalMcps:         result.ExternalMcps,
+		ExternalURL:          result.ExternalURL,
+		FunctionsAssets:      result.FunctionsAssets,
+		FunctionsToolCount:   result.FunctionsToolCount,
+		GithubPr:             result.GithubPr,
+		GithubRepo:           result.GithubRepo,
+		GithubSha:            result.GithubSha,
+		ID:                   result.ID,
+		IdempotencyKey:       result.IdempotencyKey,
+		Openapiv3Assets:      result.Openapiv3Assets,
+		Openapiv3ToolCount:   result.Openapiv3ToolCount,
+		OrganizationID:       result.OrganizationID,
+		Packages:             result.Packages,
+		ProjectID:            result.ProjectID,
+		Status:               result.Status,
+		UserID:               result.UserID,
+	}
 }

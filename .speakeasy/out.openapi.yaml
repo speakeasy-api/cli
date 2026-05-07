@@ -1,0 +1,3173 @@
+openapi: 3.0.3
+info:
+  title: Gram API Description
+  description: Gram is the tools platform for AI agents
+  version: 0.0.1
+servers:
+  - url: https://app.getgram.ai
+paths:
+  /rpc/assets.uploadFunctions:
+    post:
+      description: Upload functions to Gram.
+      operationId: uploadFunctions
+      parameters:
+        - allowEmptyValue: true
+          in: header
+          name: Content-Type
+          required: true
+          schema:
+            type: string
+        - allowEmptyValue: true
+          in: header
+          name: Content-Length
+          required: true
+          schema:
+            format: int64
+            type: integer
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadFunctionsResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: uploadFunctions assets
+      tags:
+        - assets
+      x-speakeasy-name-override: uploadFunctions
+      x-speakeasy-react-hook:
+        name: UploadFunctions
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+  /rpc/assets.uploadOpenAPIv3:
+    post:
+      description: Upload an OpenAPI v3 document to Gram.
+      operationId: uploadOpenAPIv3Asset
+      parameters:
+        - allowEmptyValue: true
+          in: header
+          name: Content-Type
+          required: true
+          schema:
+            type: string
+        - allowEmptyValue: true
+          in: header
+          name: Content-Length
+          required: true
+          schema:
+            format: int64
+            type: integer
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadOpenAPIv3Result'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: uploadOpenAPIv3 assets
+      tags:
+        - assets
+      x-speakeasy-name-override: uploadOpenAPIv3
+      x-speakeasy-react-hook:
+        name: UploadOpenAPIv3
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+  /rpc/deployments.active:
+    get:
+      description: Get the active deployment for a project.
+      operationId: getActiveDeployment
+      parameters:
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActiveDeploymentResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: getActiveDeployment deployments
+      tags:
+        - deployments
+      x-speakeasy-name-override: active
+      x-speakeasy-react-hook:
+        name: ActiveDeployment
+  /rpc/deployments.create:
+    post:
+      description: Create a deployment to load tool definitions.
+      operationId: createDeployment
+      parameters:
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+        - allowEmptyValue: true
+          description: A unique identifier that will mitigate against duplicate deployments.
+          example: 01jqq0ajmb4qh9eppz48dejr2m
+          in: header
+          name: Idempotency-Key
+          required: true
+          schema:
+            description: A unique identifier that will mitigate against duplicate deployments.
+            example: 01jqq0ajmb4qh9eppz48dejr2m
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDeploymentRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDeploymentResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: createDeployment deployments
+      tags:
+        - deployments
+      x-speakeasy-name-override: create
+      x-speakeasy-react-hook:
+        name: CreateDeployment
+  /rpc/deployments.evolve:
+    post:
+      description: Create a new deployment with additional or updated tool sources.
+      operationId: evolveDeployment
+      parameters:
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvolveForm'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EvolveResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: evolve deployments
+      tags:
+        - deployments
+      x-speakeasy-name-override: evolveDeployment
+      x-speakeasy-react-hook:
+        name: EvolveDeployment
+  /rpc/deployments.get:
+    get:
+      description: Get a deployment by its ID.
+      operationId: getDeployment
+      parameters:
+        - allowEmptyValue: true
+          description: The ID of the deployment
+          in: query
+          name: id
+          required: true
+          schema:
+            description: The ID of the deployment
+            type: string
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDeploymentResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: getDeployment deployments
+      tags:
+        - deployments
+      x-speakeasy-name-override: getById
+      x-speakeasy-react-hook:
+        name: Deployment
+  /rpc/deployments.latest:
+    get:
+      description: Get the latest deployment for a project.
+      operationId: getLatestDeployment
+      parameters:
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLatestDeploymentResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: getLatestDeployment deployments
+      tags:
+        - deployments
+      x-speakeasy-name-override: latest
+      x-speakeasy-react-hook:
+        name: LatestDeployment
+  /rpc/deployments.redeploy:
+    post:
+      description: Redeploys an existing deployment.
+      operationId: redeployDeployment
+      parameters:
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RedeployRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedeployResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+      summary: redeploy deployments
+      tags:
+        - deployments
+      x-speakeasy-name-override: redeployDeployment
+      x-speakeasy-react-hook:
+        name: RedeployDeployment
+  /rpc/keys.verify:
+    get:
+      description: Verify an api key
+      operationId: validateAPIKey
+      parameters:
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidateKeyResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - apikey_header_Gram-Key: []
+      summary: verifyKey keys
+      tags:
+        - keys
+      x-speakeasy-name-override: validate
+      x-speakeasy-react-hook:
+        name: ValidateAPIKey
+  /rpc/toolsets.get:
+    get:
+      description: Get detailed information about a toolset including full HTTP tool definitions
+      operationId: getToolset
+      parameters:
+        - allowEmptyValue: true
+          description: The slug of the toolset
+          in: query
+          name: slug
+          required: true
+          schema:
+            description: A short url-friendly label that uniquely identifies a resource.
+            maxLength: 40
+            pattern: ^[a-z0-9_-]{1,128}$
+            type: string
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Toolset'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+      summary: getToolset toolsets
+      tags:
+        - toolsets
+      x-speakeasy-name-override: getBySlug
+      x-speakeasy-react-hook:
+        name: Toolset
+  /rpc/toolsets.list:
+    get:
+      description: List all toolsets for a project
+      operationId: listToolsets
+      parameters:
+        - allowEmptyValue: true
+          description: Session header
+          in: header
+          name: Gram-Session
+          schema:
+            description: Session header
+            type: string
+        - allowEmptyValue: true
+          description: API Key header
+          in: header
+          name: Gram-Key
+          schema:
+            description: API Key header
+            type: string
+        - allowEmptyValue: true
+          description: project header
+          in: header
+          name: Gram-Project
+          schema:
+            description: project header
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListToolsetsResult'
+          description: OK response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'bad_request: request is invalid'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unauthorized: unauthorized access'
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'forbidden: permission denied'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'not_found: resource not found'
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'conflict: resource already exists'
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unsupported_media: unsupported media type'
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'invalid: request contains one or more invalidation fields'
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'unexpected: an unexpected error occurred'
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: 'gateway_error: an unexpected error occurred'
+      security:
+        - project_slug_header_Gram-Project: []
+          session_header_Gram-Session: []
+        - apikey_header_Gram-Key: []
+          project_slug_header_Gram-Project: []
+      summary: listToolsets toolsets
+      tags:
+        - toolsets
+      x-speakeasy-name-override: list
+      x-speakeasy-react-hook:
+        name: ListToolsets
+components:
+  schemas:
+    AddDeploymentPackageForm:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the package.
+        version:
+          type: string
+          description: The version of the package.
+      required:
+        - name
+    AddExternalMCPForm:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name for the external MCP server.
+          example: My Slack Integration
+        organization_mcp_collection_registry_id:
+          type: string
+          description: The ID of the internal collection registry the server is from.
+          format: uuid
+        registry_id:
+          type: string
+          description: The ID of the external MCP registry the server is from.
+          format: uuid
+        registry_server_specifier:
+          type: string
+          description: The canonical server name used to look up the server in the registry (e.g., 'slack', 'ai.exa/exa').
+          example: slack
+        selected_remotes:
+          type: array
+          items:
+            type: string
+          description: URLs of the remotes to use for this MCP server. If not provided, the backend will auto-select based on transport type preference.
+          example:
+            - https://mcp.example.com/sse
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+      required:
+        - name
+        - slug
+        - registry_server_specifier
+    AddFunctionsForm:
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: The ID of the functions file from the assets service.
+        memory_mib:
+          type: integer
+          description: The amount of memory in MiB to allocate for the function (1 MiB = 1024 * 1024 bytes).
+          format: int64
+          minimum: 0
+          maximum: 4096
+        name:
+          type: string
+          description: The functions file display name.
+        runtime:
+          type: string
+          description: 'The runtime to use when executing functions. Allowed values are: nodejs:22, nodejs:24, python:3.12.'
+        scale:
+          type: integer
+          description: The number of instances to scale the function to.
+          format: int64
+          minimum: 0
+          maximum: 5
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+      required:
+        - asset_id
+        - name
+        - slug
+        - runtime
+    AddOpenAPIv3DeploymentAssetForm:
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: The ID of the uploaded asset.
+        name:
+          type: string
+          description: The name to give the document as it will be displayed in UIs.
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+      required:
+        - asset_id
+        - name
+        - slug
+    AddPackageForm:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the package to add.
+        version:
+          type: string
+          description: The version of the package to add. If omitted, the latest version will be used.
+      required:
+        - name
+    Asset:
+      type: object
+      properties:
+        content_length:
+          type: integer
+          description: The content length of the asset
+          format: int64
+        content_type:
+          type: string
+          description: The content type of the asset
+        created_at:
+          type: string
+          description: The creation date of the asset.
+          format: date-time
+        id:
+          type: string
+          description: The ID of the asset
+        kind:
+          type: string
+          enum:
+            - openapiv3
+            - image
+            - functions
+            - chat_attachment
+            - unknown
+        sha256:
+          type: string
+          description: The SHA256 hash of the asset
+        updated_at:
+          type: string
+          description: The last update date of the asset.
+          format: date-time
+      required:
+        - id
+        - kind
+        - sha256
+        - content_type
+        - content_length
+        - created_at
+        - updated_at
+    CanonicalToolAttributes:
+      type: object
+      properties:
+        confirm:
+          type: string
+          description: Confirmation mode for the tool
+        confirm_prompt:
+          type: string
+          description: Prompt for the confirmation
+        description:
+          type: string
+          description: Description of the tool
+        name:
+          type: string
+          description: The name of the tool
+        summarizer:
+          type: string
+          description: Summarizer for the tool
+        variation_id:
+          type: string
+          description: The ID of the variation that was applied to the tool
+      description: The original details of a tool
+      required:
+        - variation_id
+        - name
+        - description
+    CreateDeploymentRequestBody:
+      type: object
+      properties:
+        external_id:
+          type: string
+          description: The external ID to refer to the deployment. This can be a git commit hash for example.
+          example: bc5f4a555e933e6861d12edba4c2d87ef6caf8e6
+        external_mcps:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddExternalMCPForm'
+        external_url:
+          type: string
+          description: The upstream URL a deployment can refer to. This can be a github url to a commit hash or pull request.
+        functions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddFunctionsForm'
+        github_pr:
+          type: string
+          description: The github pull request that resulted in the deployment.
+          example: "1234"
+        github_repo:
+          type: string
+          description: The github repository in the form of "owner/repo".
+          example: speakeasyapi/gram
+        github_sha:
+          type: string
+          description: The commit hash that triggered the deployment.
+          example: f33e693e9e12552043bc0ec5c37f1b8a9e076161
+        non_blocking:
+          type: boolean
+          description: If true, the deployment will be created in non-blocking mode where the request will return immediately and the deployment will proceed asynchronously.
+          example: false
+        openapiv3_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddOpenAPIv3DeploymentAssetForm'
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddDeploymentPackageForm'
+    CreateDeploymentResult:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/Deployment'
+    Deployment:
+      type: object
+      properties:
+        cloned_from:
+          type: string
+          description: The ID of the deployment that this deployment was cloned from.
+          example: bc5f4a555e933e6861d12edba4c2d87ef6caf8e6
+        created_at:
+          type: string
+          description: The creation date of the deployment.
+          format: date-time
+        external_id:
+          type: string
+          description: The external ID to refer to the deployment. This can be a git commit hash for example.
+          example: bc5f4a555e933e6861d12edba4c2d87ef6caf8e6
+        external_mcp_tool_count:
+          type: integer
+          description: The number of tools in the deployment generated from external MCP servers.
+          format: int64
+        external_mcps:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentExternalMCP'
+          description: The external MCP servers that were deployed.
+        external_url:
+          type: string
+          description: The upstream URL a deployment can refer to. This can be a github url to a commit hash or pull request.
+        functions_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentFunctions'
+          description: The IDs, as returned from the assets upload service, to uploaded OpenAPI 3.x documents whose operations will become tool definitions.
+        functions_tool_count:
+          type: integer
+          description: The number of tools in the deployment generated from Functions.
+          format: int64
+        github_pr:
+          type: string
+          description: The github pull request that resulted in the deployment.
+          example: "1234"
+        github_repo:
+          type: string
+          description: The github repository in the form of "owner/repo".
+          example: speakeasyapi/gram
+        github_sha:
+          type: string
+          description: The commit hash that triggered the deployment.
+          example: f33e693e9e12552043bc0ec5c37f1b8a9e076161
+        id:
+          type: string
+          description: The ID to of the deployment.
+          example: bc5f4a555e933e6861d12edba4c2d87ef6caf8e6
+        idempotency_key:
+          type: string
+          description: A unique identifier that will mitigate against duplicate deployments.
+          example: 01jqq0ajmb4qh9eppz48dejr2m
+        openapiv3_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenAPIv3DeploymentAsset'
+          description: The IDs, as returned from the assets upload service, to uploaded OpenAPI 3.x documents whose operations will become tool definitions.
+        openapiv3_tool_count:
+          type: integer
+          description: The number of tools in the deployment generated from OpenAPI documents.
+          format: int64
+        organization_id:
+          type: string
+          description: The ID of the organization that the deployment belongs to.
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentPackage'
+          description: The packages that were deployed.
+        project_id:
+          type: string
+          description: The ID of the project that the deployment belongs to.
+        status:
+          type: string
+          description: The status of the deployment.
+        user_id:
+          type: string
+          description: The ID of the user that created the deployment.
+      required:
+        - id
+        - created_at
+        - organization_id
+        - project_id
+        - user_id
+        - openapiv3_assets
+        - status
+        - packages
+        - openapiv3_tool_count
+        - functions_tool_count
+        - external_mcp_tool_count
+    DeploymentExternalMCP:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the deployment external MCP record.
+        name:
+          type: string
+          description: The display name for the external MCP server.
+        organization_mcp_collection_registry_id:
+          type: string
+          description: The ID of the internal collection registry the server is from.
+        registry_id:
+          type: string
+          description: The ID of the external MCP registry the server is from.
+        registry_server_specifier:
+          type: string
+          description: The canonical server name used to look up the server in the registry.
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+      required:
+        - id
+        - name
+        - slug
+        - registry_server_specifier
+    DeploymentFunctions:
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: The ID of the uploaded asset.
+        id:
+          type: string
+          description: The ID of the deployment asset.
+        memory_mib:
+          type: integer
+          description: The memory limit in MiB of function runner machines.
+          format: int32
+        name:
+          type: string
+          description: The name to give the document as it will be displayed in UIs.
+        runtime:
+          type: string
+          description: The runtime to use when executing functions.
+        scale:
+          type: integer
+          description: The number of instances to run for the function.
+          format: int32
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+      required:
+        - id
+        - asset_id
+        - name
+        - slug
+        - runtime
+    DeploymentPackage:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the deployment package.
+        name:
+          type: string
+          description: The name of the package.
+        version:
+          type: string
+          description: The version of the package.
+      required:
+        - id
+        - name
+        - version
+    Error:
+      type: object
+      properties:
+        fault:
+          type: boolean
+          description: Is the error a server-side fault?
+        id:
+          type: string
+          description: ID is a unique identifier for this particular occurrence of the problem.
+          example: 123abc
+        message:
+          type: string
+          description: Message is a human-readable explanation specific to this occurrence of the problem.
+          example: parameter 'p' must be an integer
+        name:
+          type: string
+          description: Name is the name of this class of errors.
+          example: bad_request
+        temporary:
+          type: boolean
+          description: Is the error temporary?
+        timeout:
+          type: boolean
+          description: Is the error a timeout?
+      description: unauthorized access
+      required:
+        - name
+        - id
+        - message
+        - temporary
+        - timeout
+        - fault
+    EvolveForm:
+      type: object
+      properties:
+        deployment_id:
+          type: string
+          description: The ID of the deployment to evolve. If omitted, the latest deployment will be used.
+        exclude_external_mcps:
+          type: array
+          items:
+            type: string
+          description: The external MCP servers, identified by slug, to exclude from the new deployment when cloning a previous deployment.
+        exclude_functions:
+          type: array
+          items:
+            type: string
+          description: The functions, identified by slug, to exclude from the new deployment when cloning a previous deployment.
+        exclude_openapiv3_assets:
+          type: array
+          items:
+            type: string
+          description: The OpenAPI 3.x documents, identified by slug, to exclude from the new deployment when cloning a previous deployment.
+        exclude_packages:
+          type: array
+          items:
+            type: string
+          description: The packages to exclude from the new deployment when cloning a previous deployment.
+        non_blocking:
+          type: boolean
+          description: If true, the deployment will be created in non-blocking mode where the request will return immediately and the deployment will proceed asynchronously.
+          example: false
+        upsert_external_mcps:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddExternalMCPForm'
+          description: The external MCP servers to upsert in the new deployment.
+        upsert_functions:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddFunctionsForm'
+          description: The tool functions to upsert in the new deployment.
+        upsert_openapiv3_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddOpenAPIv3DeploymentAssetForm'
+          description: The OpenAPI 3.x documents to upsert in the new deployment.
+        upsert_packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddPackageForm'
+          description: The packages to upsert in the new deployment.
+    EvolveResult:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/Deployment'
+    ExternalMCPHeaderDefinition:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the header
+        header_name:
+          type: string
+          description: The actual HTTP header name to send (e.g., X-Api-Key)
+        name:
+          type: string
+          description: The prefixed environment variable name (e.g., SLACK_X_API_KEY)
+        placeholder:
+          type: string
+          description: Placeholder value for the header
+        required:
+          type: boolean
+          description: Whether the header is required
+        secret:
+          type: boolean
+          description: Whether the header value is secret
+      required:
+        - name
+        - header_name
+        - required
+        - secret
+    ExternalMCPToolDefinition:
+      type: object
+      properties:
+        annotations:
+          $ref: '#/components/schemas/ToolAnnotations'
+        canonical:
+          $ref: '#/components/schemas/CanonicalToolAttributes'
+        canonical_name:
+          type: string
+          description: The canonical name of the tool. Will be the same as the name if there is no variation.
+        confirm:
+          type: string
+          description: Confirmation mode for the tool
+        confirm_prompt:
+          type: string
+          description: Prompt for the confirmation
+        created_at:
+          type: string
+          description: The creation date of the tool.
+          format: date-time
+        deployment_external_mcp_id:
+          type: string
+          description: The ID of the deployments_external_mcps record
+        deployment_id:
+          type: string
+          description: The ID of the deployment
+        description:
+          type: string
+          description: Description of the tool
+        id:
+          type: string
+          description: The ID of the tool
+        name:
+          type: string
+          description: The name of the tool
+        oauth_authorization_endpoint:
+          type: string
+          description: The OAuth authorization endpoint URL
+        oauth_registration_endpoint:
+          type: string
+          description: The OAuth dynamic client registration endpoint URL
+        oauth_scopes_supported:
+          type: array
+          items:
+            type: string
+          description: The OAuth scopes supported by the server
+        oauth_token_endpoint:
+          type: string
+          description: The OAuth token endpoint URL
+        oauth_version:
+          type: string
+          description: 'OAuth version: ''2.1'' (MCP OAuth), ''2.0'' (legacy), or ''none'''
+        project_id:
+          type: string
+          description: The ID of the project
+        registry_id:
+          type: string
+          description: The ID of the MCP registry
+        registry_server_name:
+          type: string
+          description: The name of the external MCP server (e.g., exa)
+        registry_specifier:
+          type: string
+          description: The specifier of the external MCP server (e.g., 'io.modelcontextprotocol.anonymous/exa')
+        remote_url:
+          type: string
+          description: The URL to connect to the MCP server
+        requires_oauth:
+          type: boolean
+          description: Whether the external MCP server requires OAuth authentication
+        schema:
+          type: string
+          description: JSON schema for the request
+        schema_version:
+          type: string
+          description: Version of the schema
+        slug:
+          type: string
+          description: The slug used for tool prefixing (e.g., github)
+        summarizer:
+          type: string
+          description: Summarizer for the tool
+        tool_urn:
+          type: string
+          description: The URN of this tool
+        transport_type:
+          type: string
+          description: The transport type used to connect to the MCP server
+          enum:
+            - streamable-http
+            - sse
+        type:
+          type: string
+          description: Whether or not the tool is a proxy tool
+        updated_at:
+          type: string
+          description: The last update date of the tool.
+          format: date-time
+        variation:
+          $ref: '#/components/schemas/ToolVariation'
+      description: A proxy tool that references an external MCP server
+      required:
+        - deployment_external_mcp_id
+        - deployment_id
+        - registry_specifier
+        - registry_server_name
+        - registry_id
+        - slug
+        - remote_url
+        - transport_type
+        - requires_oauth
+        - oauth_version
+        - created_at
+        - updated_at
+        - id
+        - project_id
+        - name
+        - canonical_name
+        - description
+        - schema
+        - tool_urn
+    ExternalOAuthServer:
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: When the external OAuth server was created.
+          format: date-time
+        id:
+          type: string
+          description: The ID of the external OAuth server
+        metadata:
+          description: The metadata for the external OAuth server
+        project_id:
+          type: string
+          description: The project ID this external OAuth server belongs to
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        updated_at:
+          type: string
+          description: When the external OAuth server was last updated.
+          format: date-time
+      required:
+        - id
+        - project_id
+        - slug
+        - metadata
+        - created_at
+        - updated_at
+    FunctionEnvironmentVariable:
+      type: object
+      properties:
+        auth_input_type:
+          type: string
+          description: Optional value of the function variable comes from a specific auth input
+        description:
+          type: string
+          description: Description of the function environment variable
+        name:
+          type: string
+          description: The environment variables
+      required:
+        - name
+    FunctionResourceDefinition:
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: The creation date of the resource.
+          format: date-time
+        deployment_id:
+          type: string
+          description: The ID of the deployment
+        description:
+          type: string
+          description: Description of the resource
+        function_id:
+          type: string
+          description: The ID of the function
+        id:
+          type: string
+          description: The ID of the resource
+        meta:
+          type: object
+          description: Meta tags for the tool
+          additionalProperties: true
+        mime_type:
+          type: string
+          description: Optional MIME type of the resource
+        name:
+          type: string
+          description: The name of the resource
+        project_id:
+          type: string
+          description: The ID of the project
+        resource_urn:
+          type: string
+          description: The URN of this resource
+        runtime:
+          type: string
+          description: Runtime environment (e.g., nodejs:24, python:3.12)
+        title:
+          type: string
+          description: Optional title for the resource
+        updated_at:
+          type: string
+          description: The last update date of the resource.
+          format: date-time
+        uri:
+          type: string
+          description: The URI of the resource
+        variables:
+          description: Variables configuration for the resource
+      description: A function resource
+      required:
+        - deployment_id
+        - function_id
+        - runtime
+        - id
+        - project_id
+        - name
+        - description
+        - uri
+        - resource_urn
+        - created_at
+        - updated_at
+    FunctionToolDefinition:
+      type: object
+      properties:
+        annotations:
+          $ref: '#/components/schemas/ToolAnnotations'
+        asset_id:
+          type: string
+          description: The ID of the asset
+        canonical:
+          $ref: '#/components/schemas/CanonicalToolAttributes'
+        canonical_name:
+          type: string
+          description: The canonical name of the tool. Will be the same as the name if there is no variation.
+        confirm:
+          type: string
+          description: Confirmation mode for the tool
+        confirm_prompt:
+          type: string
+          description: Prompt for the confirmation
+        created_at:
+          type: string
+          description: The creation date of the tool.
+          format: date-time
+        deployment_id:
+          type: string
+          description: The ID of the deployment
+        description:
+          type: string
+          description: Description of the tool
+        function_id:
+          type: string
+          description: The ID of the function
+        id:
+          type: string
+          description: The ID of the tool
+        meta:
+          type: object
+          description: Meta tags for the tool
+          additionalProperties: true
+        name:
+          type: string
+          description: The name of the tool
+        project_id:
+          type: string
+          description: The ID of the project
+        runtime:
+          type: string
+          description: Runtime environment (e.g., nodejs:24, python:3.12)
+        schema:
+          type: string
+          description: JSON schema for the request
+        schema_version:
+          type: string
+          description: Version of the schema
+        summarizer:
+          type: string
+          description: Summarizer for the tool
+        tool_urn:
+          type: string
+          description: The URN of this tool
+        updated_at:
+          type: string
+          description: The last update date of the tool.
+          format: date-time
+        variables:
+          description: Variables configuration for the function
+        variation:
+          $ref: '#/components/schemas/ToolVariation'
+      description: A function tool
+      required:
+        - deployment_id
+        - asset_id
+        - function_id
+        - runtime
+        - id
+        - project_id
+        - name
+        - canonical_name
+        - description
+        - schema
+        - tool_urn
+        - created_at
+        - updated_at
+    GetActiveDeploymentResult:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/Deployment'
+    GetDeploymentResult:
+      type: object
+      properties:
+        cloned_from:
+          type: string
+          description: The ID of the deployment that this deployment was cloned from.
+          example: bc5f4a555e933e6861d12edba4c2d87ef6caf8e6
+        created_at:
+          type: string
+          description: The creation date of the deployment.
+          format: date-time
+        external_id:
+          type: string
+          description: The external ID to refer to the deployment. This can be a git commit hash for example.
+          example: bc5f4a555e933e6861d12edba4c2d87ef6caf8e6
+        external_mcp_tool_count:
+          type: integer
+          description: The number of tools in the deployment generated from external MCP servers.
+          format: int64
+        external_mcps:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentExternalMCP'
+          description: The external MCP servers that were deployed.
+        external_url:
+          type: string
+          description: The upstream URL a deployment can refer to. This can be a github url to a commit hash or pull request.
+        functions_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentFunctions'
+          description: The IDs, as returned from the assets upload service, to uploaded OpenAPI 3.x documents whose operations will become tool definitions.
+        functions_tool_count:
+          type: integer
+          description: The number of tools in the deployment generated from Functions.
+          format: int64
+        github_pr:
+          type: string
+          description: The github pull request that resulted in the deployment.
+          example: "1234"
+        github_repo:
+          type: string
+          description: The github repository in the form of "owner/repo".
+          example: speakeasyapi/gram
+        github_sha:
+          type: string
+          description: The commit hash that triggered the deployment.
+          example: f33e693e9e12552043bc0ec5c37f1b8a9e076161
+        id:
+          type: string
+          description: The ID to of the deployment.
+          example: bc5f4a555e933e6861d12edba4c2d87ef6caf8e6
+        idempotency_key:
+          type: string
+          description: A unique identifier that will mitigate against duplicate deployments.
+          example: 01jqq0ajmb4qh9eppz48dejr2m
+        openapiv3_assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/OpenAPIv3DeploymentAsset'
+          description: The IDs, as returned from the assets upload service, to uploaded OpenAPI 3.x documents whose operations will become tool definitions.
+        openapiv3_tool_count:
+          type: integer
+          description: The number of tools in the deployment generated from OpenAPI documents.
+          format: int64
+        organization_id:
+          type: string
+          description: The ID of the organization that the deployment belongs to.
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeploymentPackage'
+          description: The packages that were deployed.
+        project_id:
+          type: string
+          description: The ID of the project that the deployment belongs to.
+        status:
+          type: string
+          description: The status of the deployment.
+        user_id:
+          type: string
+          description: The ID of the user that created the deployment.
+      required:
+        - id
+        - created_at
+        - organization_id
+        - project_id
+        - user_id
+        - openapiv3_assets
+        - status
+        - packages
+        - openapiv3_tool_count
+        - functions_tool_count
+        - external_mcp_tool_count
+    GetLatestDeploymentResult:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/Deployment'
+    HTTPToolDefinition:
+      type: object
+      properties:
+        annotations:
+          $ref: '#/components/schemas/ToolAnnotations'
+        asset_id:
+          type: string
+          description: The ID of the asset
+        canonical:
+          $ref: '#/components/schemas/CanonicalToolAttributes'
+        canonical_name:
+          type: string
+          description: The canonical name of the tool. Will be the same as the name if there is no variation.
+        confirm:
+          type: string
+          description: Confirmation mode for the tool
+        confirm_prompt:
+          type: string
+          description: Prompt for the confirmation
+        created_at:
+          type: string
+          description: The creation date of the tool.
+          format: date-time
+        default_server_url:
+          type: string
+          description: The default server URL for the tool
+        deployment_id:
+          type: string
+          description: The ID of the deployment
+        description:
+          type: string
+          description: Description of the tool
+        http_method:
+          type: string
+          description: HTTP method for the request
+        id:
+          type: string
+          description: The ID of the tool
+        name:
+          type: string
+          description: The name of the tool
+        openapiv3_document_id:
+          type: string
+          description: The ID of the OpenAPI v3 document
+        openapiv3_operation:
+          type: string
+          description: OpenAPI v3 operation
+        package_name:
+          type: string
+          description: The name of the source package
+        path:
+          type: string
+          description: Path for the request
+        project_id:
+          type: string
+          description: The ID of the project
+        response_filter:
+          $ref: '#/components/schemas/ResponseFilter'
+        schema:
+          type: string
+          description: JSON schema for the request
+        schema_version:
+          type: string
+          description: Version of the schema
+        security:
+          type: string
+          description: Security requirements for the underlying HTTP endpoint
+        summarizer:
+          type: string
+          description: Summarizer for the tool
+        summary:
+          type: string
+          description: Summary of the tool
+        tags:
+          type: array
+          items:
+            type: string
+          description: The tags list for this http tool
+        tool_urn:
+          type: string
+          description: The URN of this tool
+        updated_at:
+          type: string
+          description: The last update date of the tool.
+          format: date-time
+        variation:
+          $ref: '#/components/schemas/ToolVariation'
+      description: An HTTP tool
+      required:
+        - summary
+        - tags
+        - http_method
+        - path
+        - schema
+        - deployment_id
+        - asset_id
+        - id
+        - project_id
+        - name
+        - canonical_name
+        - description
+        - tool_urn
+        - created_at
+        - updated_at
+    ListToolsetsResult:
+      type: object
+      properties:
+        toolsets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolsetEntry'
+          description: The list of toolsets
+      required:
+        - toolsets
+    OAuthEnablementMetadata:
+      type: object
+      properties:
+        oauth2_security_count:
+          type: integer
+          description: Count of security variables that are OAuth2 supported
+          format: int64
+      required:
+        - oauth2_security_count
+    OAuthProxyProvider:
+      type: object
+      properties:
+        authorization_endpoint:
+          type: string
+          description: The authorization endpoint URL
+        created_at:
+          type: string
+          description: When the OAuth proxy provider was created.
+          format: date-time
+        environment_slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        grant_types_supported:
+          type: array
+          items:
+            type: string
+          description: The grant types supported by this provider
+        id:
+          type: string
+          description: The ID of the OAuth proxy provider
+        provider_type:
+          type: string
+          description: The type of OAuth provider
+          enum:
+            - custom
+            - gram
+        scopes_supported:
+          type: array
+          items:
+            type: string
+          description: The OAuth scopes supported by this provider
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        token_endpoint:
+          type: string
+          description: The token endpoint URL
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+          description: The token endpoint auth methods supported by this provider
+        updated_at:
+          type: string
+          description: When the OAuth proxy provider was last updated.
+          format: date-time
+      required:
+        - id
+        - slug
+        - provider_type
+        - authorization_endpoint
+        - token_endpoint
+        - created_at
+        - updated_at
+    OAuthProxyServer:
+      type: object
+      properties:
+        audience:
+          type: string
+          description: The audience parameter to send to the upstream OAuth provider
+        created_at:
+          type: string
+          description: When the OAuth proxy server was created.
+          format: date-time
+        id:
+          type: string
+          description: The ID of the OAuth proxy server
+        oauth_proxy_providers:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuthProxyProvider'
+          description: The OAuth proxy providers for this server
+        project_id:
+          type: string
+          description: The project ID this OAuth proxy server belongs to
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        updated_at:
+          type: string
+          description: When the OAuth proxy server was last updated.
+          format: date-time
+      required:
+        - id
+        - project_id
+        - slug
+        - created_at
+        - updated_at
+    OpenAPIv3DeploymentAsset:
+      type: object
+      properties:
+        asset_id:
+          type: string
+          description: The ID of the uploaded asset.
+        id:
+          type: string
+          description: The ID of the deployment asset.
+        name:
+          type: string
+          description: The name to give the document as it will be displayed in UIs.
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+      required:
+        - id
+        - asset_id
+        - name
+        - slug
+    PlatformToolDefinition:
+      type: object
+      properties:
+        annotations:
+          $ref: '#/components/schemas/ToolAnnotations'
+        canonical:
+          $ref: '#/components/schemas/CanonicalToolAttributes'
+        canonical_name:
+          type: string
+          description: The canonical name of the tool. Will be the same as the name if there is no variation.
+        confirm:
+          type: string
+          description: Confirmation mode for the tool
+        confirm_prompt:
+          type: string
+          description: Prompt for the confirmation
+        created_at:
+          type: string
+          description: The creation date of the tool.
+          format: date-time
+        description:
+          type: string
+          description: Description of the tool
+        id:
+          type: string
+          description: The ID of the tool
+        name:
+          type: string
+          description: The name of the tool
+        owner_id:
+          type: string
+          description: Optional owning entity ID
+        owner_kind:
+          type: string
+          description: The entity kind that owns this tool's lifecycle
+        project_id:
+          type: string
+          description: The ID of the project
+        schema:
+          type: string
+          description: JSON schema for the request
+        schema_version:
+          type: string
+          description: Version of the schema
+        source_slug:
+          type: string
+          description: 'The backing platform tool source (for example: logs)'
+        summarizer:
+          type: string
+          description: Summarizer for the tool
+        tool_urn:
+          type: string
+          description: The URN of this tool
+        updated_at:
+          type: string
+          description: The last update date of the tool.
+          format: date-time
+        variation:
+          $ref: '#/components/schemas/ToolVariation'
+      description: A platform-owned tool served directly by the platform
+      required:
+        - source_slug
+        - id
+        - project_id
+        - name
+        - canonical_name
+        - description
+        - schema
+        - tool_urn
+        - created_at
+        - updated_at
+    PromptTemplate:
+      type: object
+      properties:
+        annotations:
+          $ref: '#/components/schemas/ToolAnnotations'
+        canonical:
+          $ref: '#/components/schemas/CanonicalToolAttributes'
+        canonical_name:
+          type: string
+          description: The canonical name of the tool. Will be the same as the name if there is no variation.
+        confirm:
+          type: string
+          description: Confirmation mode for the tool
+        confirm_prompt:
+          type: string
+          description: Prompt for the confirmation
+        created_at:
+          type: string
+          description: The creation date of the tool.
+          format: date-time
+        description:
+          type: string
+          description: Description of the tool
+        engine:
+          type: string
+          description: The template engine
+          enum:
+            - mustache
+        history_id:
+          type: string
+          description: The revision tree ID for the prompt template
+        id:
+          type: string
+          description: The ID of the tool
+        kind:
+          type: string
+          description: The kind of prompt the template is used for
+          enum:
+            - prompt
+            - higher_order_tool
+        name:
+          type: string
+          description: The name of the tool
+        predecessor_id:
+          type: string
+          description: The previous version of the prompt template to use as predecessor
+        project_id:
+          type: string
+          description: The ID of the project
+        prompt:
+          type: string
+          description: The template content
+        schema:
+          type: string
+          description: JSON schema for the request
+        schema_version:
+          type: string
+          description: Version of the schema
+        summarizer:
+          type: string
+          description: Summarizer for the tool
+        tool_urn:
+          type: string
+          description: The URN of this tool
+        tool_urns_hint:
+          type: array
+          items:
+            type: string
+          description: The suggested tool URNS associated with the prompt template
+          maxItems: 20
+        tools_hint:
+          type: array
+          items:
+            type: string
+          description: The suggested tool names associated with the prompt template
+          maxItems: 20
+        updated_at:
+          type: string
+          description: The last update date of the tool.
+          format: date-time
+        variation:
+          $ref: '#/components/schemas/ToolVariation'
+      description: A prompt template
+      required:
+        - id
+        - history_id
+        - name
+        - prompt
+        - engine
+        - kind
+        - tools_hint
+        - tool_urn
+        - created_at
+        - updated_at
+        - project_id
+        - canonical_name
+        - description
+        - schema
+    PromptTemplateEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the prompt template
+        kind:
+          type: string
+          description: The kind of the prompt template
+        name:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+      required:
+        - id
+        - name
+    RedeployRequestBody:
+      type: object
+      properties:
+        deployment_id:
+          type: string
+          description: The ID of the deployment to redeploy.
+      required:
+        - deployment_id
+    RedeployResult:
+      type: object
+      properties:
+        deployment:
+          $ref: '#/components/schemas/Deployment'
+    Resource:
+      type: object
+      properties:
+        function_resource_definition:
+          $ref: '#/components/schemas/FunctionResourceDefinition'
+      description: A polymorphic resource - currently only function resources are supported
+    ResourceEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the resource
+        name:
+          type: string
+          description: The name of the resource
+        resource_urn:
+          type: string
+          description: The URN of the resource
+        type:
+          type: string
+          enum:
+            - function
+        uri:
+          type: string
+          description: The uri of the resource
+      required:
+        - type
+        - id
+        - name
+        - uri
+        - resource_urn
+    ResponseFilter:
+      type: object
+      properties:
+        content_types:
+          type: array
+          items:
+            type: string
+          description: Content types to filter for
+        status_codes:
+          type: array
+          items:
+            type: string
+          description: Status codes to filter for
+        type:
+          type: string
+          description: Response filter type for the tool
+      description: Response filter metadata for the tool
+      required:
+        - type
+        - status_codes
+        - content_types
+    SecurityVariable:
+      type: object
+      properties:
+        bearer_format:
+          type: string
+          description: The bearer format
+        display_name:
+          type: string
+          description: User-friendly display name for the security variable (defaults to name if not set)
+        env_variables:
+          type: array
+          items:
+            type: string
+          description: The environment variables
+        id:
+          type: string
+          description: The unique identifier of the security variable
+        in_placement:
+          type: string
+          description: Where the security token is placed
+        name:
+          type: string
+          description: The name of the security scheme (actual header/parameter name)
+        oauth_flows:
+          type: string
+          description: The OAuth flows
+          format: binary
+        oauth_types:
+          type: array
+          items:
+            type: string
+          description: The OAuth types
+        scheme:
+          type: string
+          description: The security scheme
+        type:
+          type: string
+          description: The type of security
+      required:
+        - id
+        - name
+        - in_placement
+        - scheme
+        - env_variables
+    ServerVariable:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the server variable
+        env_variables:
+          type: array
+          items:
+            type: string
+          description: The environment variables
+      required:
+        - description
+        - env_variables
+    Tool:
+      type: object
+      properties:
+        external_mcp_tool_definition:
+          $ref: '#/components/schemas/ExternalMCPToolDefinition'
+        function_tool_definition:
+          $ref: '#/components/schemas/FunctionToolDefinition'
+        http_tool_definition:
+          $ref: '#/components/schemas/HTTPToolDefinition'
+        platform_tool_definition:
+          $ref: '#/components/schemas/PlatformToolDefinition'
+        prompt_template:
+          $ref: '#/components/schemas/PromptTemplate'
+      description: A polymorphic tool - can be an HTTP tool, function tool, prompt template, or external MCP proxy
+    ToolAnnotations:
+      type: object
+      properties:
+        destructive_hint:
+          type: boolean
+          description: If true, the tool may perform destructive updates (only meaningful when read_only_hint is false)
+        idempotent_hint:
+          type: boolean
+          description: If true, repeated calls with same arguments have no additional effect (only meaningful when read_only_hint is false)
+        open_world_hint:
+          type: boolean
+          description: If true, the tool interacts with external entities beyond its local environment
+        read_only_hint:
+          type: boolean
+          description: If true, the tool does not modify its environment
+        title:
+          type: string
+          description: Human-readable display name for the tool
+      description: Tool annotations providing behavioral hints about the tool
+    ToolEntry:
+      type: object
+      properties:
+        annotations:
+          $ref: '#/components/schemas/ToolAnnotations'
+        http_method:
+          type: string
+          description: HTTP method for HTTP tools (GET, POST, PUT, PATCH, DELETE)
+        id:
+          type: string
+          description: The ID of the tool
+        name:
+          type: string
+          description: The name of the tool
+        tool_urn:
+          type: string
+          description: The URN of the tool
+        type:
+          type: string
+          enum:
+            - http
+            - prompt
+            - function
+            - platform
+            - externalmcp
+      required:
+        - type
+        - id
+        - name
+        - tool_urn
+    ToolVariation:
+      type: object
+      properties:
+        confirm:
+          type: string
+          description: The confirmation mode for the tool variation
+        confirm_prompt:
+          type: string
+          description: The confirmation prompt for the tool variation
+        created_at:
+          type: string
+          description: The creation date of the tool variation
+        description:
+          type: string
+          description: The description of the tool variation
+        destructive_hint:
+          type: boolean
+          description: 'Override: if true, the tool may perform destructive updates'
+        group_id:
+          type: string
+          description: The ID of the tool variation group
+        id:
+          type: string
+          description: The ID of the tool variation
+        idempotent_hint:
+          type: boolean
+          description: 'Override: if true, repeated calls have no additional effect'
+        name:
+          type: string
+          description: The name of the tool variation
+        open_world_hint:
+          type: boolean
+          description: 'Override: if true, the tool interacts with external entities'
+        read_only_hint:
+          type: boolean
+          description: 'Override: if true, the tool does not modify its environment'
+        src_tool_name:
+          type: string
+          description: The name of the source tool
+        src_tool_urn:
+          type: string
+          description: The URN of the source tool
+        summarizer:
+          type: string
+          description: The summarizer of the tool variation
+        title:
+          type: string
+          description: Display name override for the tool
+        updated_at:
+          type: string
+          description: The last update date of the tool variation
+      required:
+        - id
+        - group_id
+        - src_tool_name
+        - src_tool_urn
+        - created_at
+        - updated_at
+    Toolset:
+      type: object
+      properties:
+        account_type:
+          type: string
+          description: The account type of the organization
+        created_at:
+          type: string
+          description: When the toolset was created.
+          format: date-time
+        custom_domain_id:
+          type: string
+          description: The ID of the custom domain to use for the toolset
+        default_environment_slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        description:
+          type: string
+          description: Description of the toolset
+        external_mcp_header_definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalMCPHeaderDefinition'
+          description: The external MCP header definitions that are relevant to the toolset
+        external_oauth_server:
+          $ref: '#/components/schemas/ExternalOAuthServer'
+        function_environment_variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionEnvironmentVariable'
+          description: The function environment variables that are relevant to the toolset
+        id:
+          type: string
+          description: The ID of the toolset
+        mcp_enabled:
+          type: boolean
+          description: Whether the toolset is enabled for MCP
+        mcp_is_public:
+          type: boolean
+          description: Whether the toolset is public in MCP
+        mcp_slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        name:
+          type: string
+          description: The name of the toolset
+        oauth_enablement_metadata:
+          $ref: '#/components/schemas/OAuthEnablementMetadata'
+        oauth_proxy_server:
+          $ref: '#/components/schemas/OAuthProxyServer'
+        organization_id:
+          type: string
+          description: The organization ID this toolset belongs to
+        origin:
+          $ref: '#/components/schemas/ToolsetOrigin'
+        project_id:
+          type: string
+          description: The project ID this toolset belongs to
+        prompt_templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromptTemplate'
+          description: 'The prompt templates in this toolset -- Note: these are actual prompts, as in MCP prompts'
+        resource_urns:
+          type: array
+          items:
+            type: string
+          description: The resource URNs in this toolset
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+          description: The resources in this toolset
+        security_variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityVariable'
+          description: The security variables that are relevant to the toolset
+        server_variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerVariable'
+          description: The server variables that are relevant to the toolset
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        tool_selection_mode:
+          type: string
+          description: The mode to use for tool selection
+        tool_urns:
+          type: array
+          items:
+            type: string
+          description: The tool URNs in this toolset
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tool'
+          description: The tools in this toolset
+        toolset_version:
+          type: integer
+          description: The version of the toolset (will be 0 if none exists)
+          format: int64
+        updated_at:
+          type: string
+          description: When the toolset was last updated.
+          format: date-time
+      required:
+        - id
+        - project_id
+        - organization_id
+        - account_type
+        - name
+        - slug
+        - tools
+        - tool_selection_mode
+        - toolset_version
+        - prompt_templates
+        - tool_urns
+        - resources
+        - resource_urns
+        - oauth_enablement_metadata
+        - created_at
+        - updated_at
+    ToolsetEntry:
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: When the toolset was created.
+          format: date-time
+        custom_domain_id:
+          type: string
+          description: The ID of the custom domain to use for the toolset
+        default_environment_slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        description:
+          type: string
+          description: Description of the toolset
+        external_mcp_header_definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalMCPHeaderDefinition'
+          description: The external MCP header definitions that are relevant to the toolset
+        function_environment_variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionEnvironmentVariable'
+          description: The function environment variables that are relevant to the toolset
+        id:
+          type: string
+          description: The ID of the toolset
+        mcp_enabled:
+          type: boolean
+          description: Whether the toolset is enabled for MCP
+        mcp_is_public:
+          type: boolean
+          description: Whether the toolset is public in MCP
+        mcp_slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        name:
+          type: string
+          description: The name of the toolset
+        organization_id:
+          type: string
+          description: The organization ID this toolset belongs to
+        origin:
+          $ref: '#/components/schemas/ToolsetOrigin'
+        project_id:
+          type: string
+          description: The project ID this toolset belongs to
+        prompt_templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromptTemplateEntry'
+          description: 'The prompt templates in this toolset -- Note: these are actual prompts, as in MCP prompts'
+        resource_urns:
+          type: array
+          items:
+            type: string
+          description: The resource URNs in this toolset
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceEntry'
+          description: The resources in this toolset
+        security_variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityVariable'
+          description: The security variables that are relevant to the toolset
+        server_variables:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServerVariable'
+          description: The server variables that are relevant to the toolset
+        slug:
+          type: string
+          description: A short url-friendly label that uniquely identifies a resource.
+          pattern: ^[a-z0-9_-]{1,128}$
+          maxLength: 40
+        tool_selection_mode:
+          type: string
+          description: The mode to use for tool selection
+        tool_urns:
+          type: array
+          items:
+            type: string
+          description: The tool URNs in this toolset
+        tools:
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolEntry'
+          description: The tools in this toolset
+        updated_at:
+          type: string
+          description: When the toolset was last updated.
+          format: date-time
+      required:
+        - id
+        - project_id
+        - organization_id
+        - name
+        - slug
+        - tools
+        - tool_selection_mode
+        - prompt_templates
+        - tool_urns
+        - resources
+        - resource_urns
+        - created_at
+        - updated_at
+    ToolsetOrigin:
+      type: object
+      properties:
+        registry_specifier:
+          type: string
+          description: The globally unique registry specifier this toolset originated from
+      required:
+        - registry_specifier
+    UploadFunctionsResult:
+      type: object
+      properties:
+        asset:
+          $ref: '#/components/schemas/Asset'
+      required:
+        - asset
+    UploadOpenAPIv3Result:
+      type: object
+      properties:
+        asset:
+          $ref: '#/components/schemas/Asset'
+      required:
+        - asset
+    ValidateKeyOrganization:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the organization
+        name:
+          type: string
+          description: The name of the organization
+        slug:
+          type: string
+          description: The slug of the organization
+      required:
+        - id
+        - name
+        - slug
+    ValidateKeyProject:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the project
+        name:
+          type: string
+          description: The name of the project
+        slug:
+          type: string
+          description: The slug of the project
+      required:
+        - id
+        - name
+        - slug
+    ValidateKeyResult:
+      type: object
+      properties:
+        organization:
+          $ref: '#/components/schemas/ValidateKeyOrganization'
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidateKeyProject'
+          description: The projects accessible with this key
+        scopes:
+          type: array
+          items:
+            type: string
+          description: List of permission scopes for this key
+      required:
+        - organization
+        - projects
+        - scopes
+  securitySchemes:
+    apikey_header_Authorization:
+      type: apiKey
+      description: key based auth.
+      name: Authorization
+      in: header
+    apikey_header_Gram-Key:
+      type: apiKey
+      description: key based auth.
+      name: Gram-Key
+      in: header
+    chat_sessions_token_header_Gram-Chat-Session:
+      type: http
+      description: Gram Chat Sessions token based auth.
+      scheme: bearer
+    function_token_header_Authorization:
+      type: http
+      description: Gram Functions token based auth.
+      scheme: bearer
+    project_slug_header_Gram-Project:
+      type: apiKey
+      description: project slug header auth.
+      name: Gram-Project
+      in: header
+    session_header_Gram-Session:
+      type: apiKey
+      description: Session based auth. By cookie or header.
+      name: Gram-Session
+      in: header
+tags:
+  - name: access
+    description: Manage roles and team member access control.
+  - name: admin
+    description: Operational endpoints for administrative tasks.
+  - name: assets
+    description: Manages assets used by Gram projects.
+  - name: assistants
+    description: Manage assistants and their runtime configuration.
+  - name: auditlogs
+    description: Manages audit logs in Gram.
+  - name: auth
+    description: Managed auth for gram producers and dashboard.
+  - name: chat
+    description: Managed chats for gram AI consumers.
+  - name: chatSessions
+    description: Manages chat session tokens for client-side authentication
+  - name: deployments
+    description: Manages deployments of tools from upstream sources.
+  - name: domains
+    description: Manage custom domains for gram.
+  - name: environments
+    description: Managing toolset environments.
+  - name: mcpRegistries
+    description: External MCP registry operations
+  - name: collections
+    description: MCP collection operations
+  - name: functions
+    description: Endpoints for working with functions.
+  - name: hooksServerNames
+    description: Manages display name overrides for hooks servers.
+  - name: hooks
+    description: Receives hook events from coding assistants for tool usage observability.
+  - name: instances
+    description: Consumer APIs for interacting with all relevant data for an instance of a toolset and environment.
+  - name: integrations
+    description: Explore third-party tools in Gram.
+  - name: keys
+    description: Managing system api keys.
+  - name: mcpEndpoints
+    description: Managing MCP endpoints, the url-friendly slug identifiers that address MCP servers.
+  - name: mcpMetadata
+    description: Manages metadata for the MCP install page shown to users.
+  - name: mcpServers
+    description: Managing MCP servers, which configure authentication, environment, and backend selection for an MCP server.
+  - name: organizations
+    description: Organization membership, invitations, and directory.
+  - name: packages
+    description: Manages packages in Gram.
+  - name: plugins
+    description: Manage distributable plugin bundles of MCP servers and hooks.
+  - name: features
+    description: Manage product level feature controls.
+  - name: projects
+    description: Manages projects in Gram.
+  - name: remoteMcp
+    description: Managing remote MCP servers.
+  - name: resources
+    description: Dashboard API for interacting with resources.
+  - name: risk
+    description: Manage risk analysis policies and view scan results.
+  - name: slack
+    description: Auth and interactions for the Gram Slack App.
+  - name: telemetry
+    description: Fetch telemetry data for tools in Gram.
+  - name: templates
+    description: Manages re-usable prompt templates and higher-order tools for a project.
+  - name: tools
+    description: Dashboard API for interacting with tools.
+  - name: toolsets
+    description: Managed toolsets for gram AI consumers.
+  - name: triggers
+    description: Manage project trigger instances and static trigger definitions.
+  - name: usage
+    description: Read usage for gram.
+  - name: variations
+    description: Manage variations of tools.

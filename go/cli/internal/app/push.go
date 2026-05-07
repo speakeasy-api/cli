@@ -11,12 +11,12 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/speakeasy-api/gram/cli/internal/app/logging"
-	"github.com/speakeasy-api/gram/cli/internal/deploy"
-	"github.com/speakeasy-api/gram/cli/internal/flags"
-	"github.com/speakeasy-api/gram/cli/internal/profile"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/cli/internal/workflow"
+	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/gf/go/cli/internal/deploy"
+	"github.com/speakeasy-api/gf/go/cli/internal/flags"
+	"github.com/speakeasy-api/gf/go/cli/internal/profile"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	"github.com/speakeasy-api/gf/go/cli/internal/workflow"
 	"github.com/urfave/cli/v2"
 )
 
@@ -74,7 +74,7 @@ func DoPush(ctx context.Context, opts PushOptions) (*PushResult, error) {
 	}
 
 	orgSlug := opts.OrgSlug
-	if orgSlug == "" && prof != nil && prof.Org != nil {
+	if orgSlug == "" && prof != nil && prof.Org.Slug != "" {
 		orgSlug = prof.Org.Slug
 	}
 	if orgSlug == "" {

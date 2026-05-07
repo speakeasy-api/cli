@@ -1,0 +1,10 @@
+# ValidateKeyResult
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Organization`                                                                          | [shared.ValidateKeyOrganization](../../../pkg/models/shared/validatekeyorganization.md) | :heavy_check_mark:                                                                      | N/A                                                                                     |
+| `Projects`                                                                              | [][shared.ValidateKeyProject](../../../pkg/models/shared/validatekeyproject.md)         | :heavy_check_mark:                                                                      | The projects accessible with this key                                                   |
+| `Scopes`                                                                                | []`string`                                                                              | :heavy_check_mark:                                                                      | List of permission scopes for this key                                                  |

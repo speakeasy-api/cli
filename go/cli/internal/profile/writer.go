@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/speakeasy-api/gram/server/gen/keys"
+	keys "github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 // Save writes the profile configuration to disk.
@@ -52,12 +52,12 @@ func preserveDefaultProjectSlug(existingProfile *Profile) string {
 	return ""
 }
 
-func validateProjectSlug(projectSlug string, projects []*keys.ValidateKeyProject) bool {
+func validateProjectSlug(projectSlug string, projects []keys.ValidateKeyProject) bool {
 	if projectSlug == "" {
 		return true
 	}
 	for _, proj := range projects {
-		if proj != nil && proj.Slug == projectSlug {
+		if proj.Slug == projectSlug {
 			return true
 		}
 	}
@@ -69,8 +69,8 @@ func buildProfile(
 	apiKey string,
 	apiURL string,
 	defaultProjectSlug string,
-	org *keys.ValidateKeyOrganization,
-	projects []*keys.ValidateKeyProject,
+	org keys.ValidateKeyOrganization,
+	projects []keys.ValidateKeyProject,
 	providedProjectSlug string,
 ) *Profile {
 	// Use provided project slug if it's valid
@@ -96,8 +96,8 @@ func buildProfile(
 func UpdateOrCreate(
 	apiKey string,
 	apiURL string,
-	org *keys.ValidateKeyOrganization,
-	projects []*keys.ValidateKeyProject,
+	org keys.ValidateKeyOrganization,
+	projects []keys.ValidateKeyProject,
 	path string,
 	profileName string,
 	projectSlug string,

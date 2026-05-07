@@ -9,13 +9,13 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/speakeasy-api/gram/cli/internal/api"
-	"github.com/speakeasy-api/gram/cli/internal/app/logging"
-	"github.com/speakeasy-api/gram/cli/internal/auth"
-	"github.com/speakeasy-api/gram/cli/internal/profile"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/cli/internal/workflow"
-	"github.com/speakeasy-api/gram/server/gen/keys"
+	"github.com/speakeasy-api/gf/go/cli/internal/api"
+	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/gf/go/cli/internal/auth"
+	"github.com/speakeasy-api/gf/go/cli/internal/profile"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	"github.com/speakeasy-api/gf/go/cli/internal/workflow"
+	keys "github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 type AuthOptions struct {

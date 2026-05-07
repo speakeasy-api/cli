@@ -1,0 +1,68 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/goreleaser/goreleaser/v2.12.5/www/docs/static/schema-pro.json
+
+version: 2
+
+project_name: gram
+
+builds:
+  - dir: ./go/cli
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    flags:
+      - -trimpath
+    ldflags:
+      - "-s -w -X github.com/speakeasy-api/gf/go/cli/internal/app.GitSHA={{.Commit}} -X github.com/speakeasy-api/gf/go/cli/internal/app.Version={{.Version}}"
+
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
+    format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+signs:
+  - cmd: cosign
+    signature: "${artifact}.sigstore.json"
+    artifacts: checksum
+    args:
+      - sign-blob
+      - "--bundle=${signature}"
+      - "${artifact}"
+      - --yes
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  disable: true
+
+release:
+  mode: keep-existing
+
+monorepo:
+  tag_prefix: "cli@"
+
+brews:
+  - name: gram
+    repository:
+      owner: speakeasy-api
+      name: homebrew-tap
+    homepage: https://app.getgram.ai
+    description: The Gram CLI for interacting with the Gram Platform
+    license: Apache-2.0
+    test: |
+      system "#{bin}/gram --version"
+
+  - name: gram@{{ .Major }}.{{ .Minor }}.{{ .Patch }}
+    repository:
+      owner: speakeasy-api
+      name: homebrew-tap
+    homepage: https://app.getgram.ai
+    description: The Gram CLI for interacting with the Gram Platform
+    license: Apache-2.0
+    test: |
+      system "#{bin}/gram --version"

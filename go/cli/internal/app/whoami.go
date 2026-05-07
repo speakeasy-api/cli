@@ -13,12 +13,12 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
-	"github.com/speakeasy-api/gram/cli/internal/api"
-	"github.com/speakeasy-api/gram/cli/internal/flags"
-	"github.com/speakeasy-api/gram/cli/internal/profile"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/cli/internal/workflow"
-	"github.com/speakeasy-api/gram/server/gen/keys"
+	"github.com/speakeasy-api/gf/go/cli/internal/api"
+	"github.com/speakeasy-api/gf/go/cli/internal/flags"
+	"github.com/speakeasy-api/gf/go/cli/internal/profile"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	"github.com/speakeasy-api/gf/go/cli/internal/workflow"
+	keys "github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 	"github.com/urfave/cli/v2"
 )
 
@@ -33,7 +33,7 @@ type WhoamiResult struct {
 	Organization       keys.ValidateKeyOrganization
 	Scopes             []string
 	CurrentProjectSlug string
-	Projects           []*keys.ValidateKeyProject
+	Projects           []keys.ValidateKeyProject
 }
 
 func DoWhoami(ctx context.Context, opts WhoamiOptions) (*WhoamiResult, error) {
@@ -77,7 +77,7 @@ func DoWhoami(ctx context.Context, opts WhoamiOptions) (*WhoamiResult, error) {
 
 	return &WhoamiResult{
 		Profile:            prof,
-		Organization:       *result.Organization,
+		Organization:       result.Organization,
 		Scopes:             result.Scopes,
 		CurrentProjectSlug: projectSlug,
 		Projects:           result.Projects,
@@ -144,7 +144,7 @@ type ProfileInfo struct {
 	Organization       keys.ValidateKeyOrganization `json:"org"`
 	Scopes             []string                     `json:"scopes"`
 	CurrentProjectSlug string                       `json:"project"`
-	Projects           []*keys.ValidateKeyProject   `json:"projects"`
+	Projects           []keys.ValidateKeyProject    `json:"projects"`
 }
 
 func printProfile(profile ProfileInfo) {
@@ -171,7 +171,7 @@ func printProfile(profile ProfileInfo) {
 
 	fmt.Println(orgTable.Render())
 
-	currentProjectIdx := slices.IndexFunc(profile.Projects, func(p *keys.ValidateKeyProject) bool {
+	currentProjectIdx := slices.IndexFunc(profile.Projects, func(p keys.ValidateKeyProject) bool {
 		return p.Slug == profile.CurrentProjectSlug
 	})
 

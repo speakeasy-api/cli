@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/speakeasy-api/gram/server/gen/keys"
+	keys "github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 // Config represents the profile configuration file structure.
@@ -34,12 +34,12 @@ type Project struct {
 
 // Profile represents a single profile with authentication and project settings.
 type Profile struct {
-	Name               string                        `json:"-"`
-	Secret             string                        `json:"secret"`
-	DefaultProjectSlug string                        `json:"defaultProjectSlug"`
-	APIUrl             string                        `json:"apiUrl"`
-	Org                *keys.ValidateKeyOrganization `json:"org"`
-	Projects           []*keys.ValidateKeyProject    `json:"projects"`
+	Name               string                       `json:"-"`
+	Secret             string                       `json:"secret"`
+	DefaultProjectSlug string                       `json:"defaultProjectSlug"`
+	APIUrl             string                       `json:"apiUrl"`
+	Org                keys.ValidateKeyOrganization `json:"org"`
+	Projects           []keys.ValidateKeyProject    `json:"projects"`
 }
 
 func EmptyConfig() *Config {
@@ -191,7 +191,7 @@ func LintProfile(p *Profile) []string {
 	if p.DefaultProjectSlug != "" {
 		found := false
 		for _, proj := range p.Projects {
-			if proj != nil && proj.Slug == p.DefaultProjectSlug {
+			if proj.Slug == p.DefaultProjectSlug {
 				found = true
 				break
 			}

@@ -29,11 +29,11 @@ function resolveGramCLI(): string {
     process.env["GRAM_DEV"] === "1";
 
   if (isLocalDev) {
-    // In local dev, use the CLI from cli/bin/gram relative to workspace root
-    // From ts-framework/functions/src/build -> ../../../../cli/bin/gram
+    // In local dev, use the Go CLI from go/cli/bin/gram relative to the
+    // workspace root. This path works from both src/build and dist/build.
     const localCliPath = resolve(
       dirname(new URL(import.meta.url).pathname),
-      "../../../../cli/bin/gram",
+      "../../../../go/cli/bin/gram",
     );
 
     // Check if the local CLI exists
@@ -217,8 +217,6 @@ export async function deployFunction(logger: Logger, config: ParsedUserConfig) {
 
   const pushArgs = [
     "--log-pretty=false",
-    "--api-url",
-    "http://localhost:8080",
     "push",
     "--config",
     config.deployStagingFile,

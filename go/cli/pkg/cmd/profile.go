@@ -1,6 +1,6 @@
 package cmd
 
-import "github.com/speakeasy-api/gram/cli/internal/profile"
+import "github.com/speakeasy-api/gf/go/cli/internal/profile"
 
 type Profile = profile.Profile
 

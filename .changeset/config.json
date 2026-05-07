@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": [
+    "@changesets/cli/commit",
+    {
+      "skipCI": false
+    }
+  ],
+  "fixed": [["@gram-ai/functions", "@gram-ai/create-function"]],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "origin/main",
+  "updateInternalDependencies": "patch",
+  "privatePackages": {
+    "version": true,
+    "tag": true
+  }
+}

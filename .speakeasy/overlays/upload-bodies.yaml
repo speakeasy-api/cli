@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: Add binary upload request bodies
+  version: 0.0.1
+actions:
+  - target: $.paths['/rpc/assets.uploadFunctions'].post
+    update:
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+  - target: $.paths['/rpc/assets.uploadOpenAPIv3'].post
+    update:
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary

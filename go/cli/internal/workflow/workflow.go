@@ -7,11 +7,10 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/speakeasy-api/gram/cli/internal/api"
-	"github.com/speakeasy-api/gram/cli/internal/deploy"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/server/gen/deployments"
-	"github.com/speakeasy-api/gram/server/gen/types"
+	"github.com/speakeasy-api/gf/go/cli/internal/api"
+	"github.com/speakeasy-api/gf/go/cli/internal/deploy"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 type Params struct {
@@ -43,10 +42,10 @@ type Workflow struct {
 	AssetsClient      *api.AssetsClient
 	DeploymentsClient *api.DeploymentsClient
 	ToolsetsClient    *api.ToolsetsClient
-	NewOpenAPIAssets  []*deployments.AddOpenAPIv3DeploymentAssetForm
-	NewFunctionAssets []*deployments.AddFunctionsForm
-	Deployment        *types.Deployment
-	Toolsets          []*types.ToolsetEntry
+	NewOpenAPIAssets  []shared.AddOpenAPIv3DeploymentAssetForm
+	NewFunctionAssets []shared.AddFunctionsForm
+	Deployment        *shared.Deployment
+	Toolsets          []shared.ToolsetEntry
 	Err               error
 }
 
@@ -110,12 +109,12 @@ func (s *Workflow) UploadAssets(
 	s.Logger.InfoContext(ctx, "uploading assets")
 
 	newOpenAPIAssets := make(
-		[]*deployments.AddOpenAPIv3DeploymentAssetForm,
+		[]shared.AddOpenAPIv3DeploymentAssetForm,
 		0,
 		len(sources),
 	)
 	newFunctionAssets := make(
-		[]*deployments.AddFunctionsForm,
+		[]shared.AddFunctionsForm,
 		0,
 		len(sources),
 	)
@@ -137,20 +136,20 @@ func (s *Workflow) UploadAssets(
 
 		switch source.Type {
 		case deploy.SourceTypeOpenAPIV3:
-			form := &deployments.AddOpenAPIv3DeploymentAssetForm{
+			form := shared.AddOpenAPIv3DeploymentAssetForm{
 				AssetID: asset.AssetID,
 				Name:    asset.Name,
 				Slug:    asset.Slug,
 			}
 			newOpenAPIAssets = append(newOpenAPIAssets, form)
 		case deploy.SourceTypeFunction:
-			form := &deployments.AddFunctionsForm{
+			form := shared.AddFunctionsForm{
 				AssetID:   asset.AssetID,
 				Name:      asset.Name,
 				Slug:      asset.Slug,
 				Runtime:   asset.Runtime,
-				Scale:     asset.Scale,
-				MemoryMib: asset.MemoryMiB,
+				Scale:     uintPtrToInt64Ptr(asset.Scale),
+				MemoryMib: uintPtrToInt64Ptr(asset.MemoryMiB),
 			}
 			newFunctionAssets = append(newFunctionAssets, form)
 		}
@@ -159,6 +158,14 @@ func (s *Workflow) UploadAssets(
 	s.NewOpenAPIAssets = newOpenAPIAssets
 	s.NewFunctionAssets = newFunctionAssets
 	return s
+}
+
+func uintPtrToInt64Ptr(value *uint) *int64 {
+	if value == nil {
+		return nil
+	}
+	converted := int64(*value)
+	return &converted
 }
 
 func (s *Workflow) EvolveDeployment(

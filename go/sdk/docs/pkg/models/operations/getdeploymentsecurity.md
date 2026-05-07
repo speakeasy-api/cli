@@ -1,0 +1,9 @@
+# GetDeploymentSecurity
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                                  | [*operations.GetDeploymentSecurityOption1](../../../pkg/models/operations/getdeploymentsecurityoption1.md) | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |
+| `Option2`                                                                                                  | [*operations.GetDeploymentSecurityOption2](../../../pkg/models/operations/getdeploymentsecurityoption2.md) | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |

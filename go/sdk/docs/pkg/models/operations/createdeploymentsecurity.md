@@ -1,0 +1,9 @@
+# CreateDeploymentSecurity
+
+
+## Fields
+
+| Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                                        | [*operations.CreateDeploymentSecurityOption1](../../../pkg/models/operations/createdeploymentsecurityoption1.md) | :heavy_minus_sign:                                                                                               | N/A                                                                                                              |
+| `Option2`                                                                                                        | [*operations.CreateDeploymentSecurityOption2](../../../pkg/models/operations/createdeploymentsecurityoption2.md) | :heavy_minus_sign:                                                                                               | N/A                                                                                                              |

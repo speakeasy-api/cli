@@ -7,14 +7,14 @@
   "main": "dist/index.js",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/speakeasy-api/gram",
+  "homepage": "https://github.com/speakeasy-api/gf",
   "engines": {
     "node": ">=22.18.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/speakeasy-api/gram.git",
-    "directory": "ts-framework/functions"
+    "url": "https://github.com/speakeasy-api/gf.git",
+    "directory": "ts/functions"
   },
   "bin": {
     "gf": "./dist/bin/cli.js"
@@ -29,8 +29,10 @@
   },
   "packageManager": "pnpm@10.30.2",
   "files": [
-    "src",
-    "dist"
+    "dist",
+    "!dist/**/*.test.*",
+    "src/**/*.ts",
+    "!src/**/*.test.ts"
   ],
   "exports": {
     ".": {
@@ -47,7 +49,7 @@
     }
   },
   "peerDependencies": {
-    "@modelcontextprotocol/sdk": "catalog:"
+    "@modelcontextprotocol/sdk": "^1.27.0"
   },
   "peerDependenciesMeta": {
     "@modelcontextprotocol/sdk": {
@@ -65,7 +67,10 @@
     "zx": "8.8.5-lite"
   },
   "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "@types/archiver": "^6.0.3",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
     "vitest": "^4.0.13"
   }
 }

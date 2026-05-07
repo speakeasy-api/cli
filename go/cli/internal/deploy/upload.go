@@ -5,10 +5,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/speakeasy-api/gram/cli/internal/api"
-	"github.com/speakeasy-api/gram/cli/internal/secret"
-	"github.com/speakeasy-api/gram/server/gen/assets"
-	"github.com/speakeasy-api/gram/server/gen/types"
+	"github.com/speakeasy-api/gf/go/cli/internal/api"
+	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 )
 
 type UploadRequest struct {
@@ -28,7 +27,7 @@ func (ur *UploadRequest) Read(ctx context.Context) (io.ReadCloser, int64, error)
 type UploadResponse struct {
 	AssetID   string
 	Name      string
-	Slug      types.Slug
+	Slug      string
 	Runtime   string
 	Scale     *uint
 	MemoryMiB *uint
@@ -53,7 +52,7 @@ func Upload(
 		ContentLength: length,
 	}
 
-	var asset *assets.Asset
+	var asset *shared.Asset
 	switch source.Type {
 	case SourceTypeOpenAPIV3:
 		asset, err = assetsClient.UploadOpenAPIv3(ctx, assetForm)
@@ -68,7 +67,7 @@ func Upload(
 	return &UploadResponse{
 		AssetID:   asset.ID,
 		Name:      source.Name,
-		Slug:      types.Slug(source.Slug),
+		Slug:      source.Slug,
 		Runtime:   source.Runtime,
 		Scale:     source.Scale,
 		MemoryMiB: source.MemoryMiB,

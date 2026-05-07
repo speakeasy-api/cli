@@ -1,0 +1,9 @@
+# GetToolsetSecurity
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                            | [*operations.GetToolsetSecurityOption1](../../../pkg/models/operations/gettoolsetsecurityoption1.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
+| `Option2`                                                                                            | [*operations.GetToolsetSecurityOption2](../../../pkg/models/operations/gettoolsetsecurityoption2.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |

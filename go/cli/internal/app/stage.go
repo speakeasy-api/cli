@@ -9,9 +9,9 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/speakeasy-api/gram/cli/internal/constants"
-	"github.com/speakeasy-api/gram/cli/internal/deploy"
-	"github.com/speakeasy-api/gram/cli/internal/o11y"
+	"github.com/speakeasy-api/gf/go/cli/internal/constants"
+	"github.com/speakeasy-api/gf/go/cli/internal/deploy"
+	"github.com/speakeasy-api/gf/go/cli/internal/o11y"
 )
 
 var (

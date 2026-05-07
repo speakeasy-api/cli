@@ -9,8 +9,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/speakeasy-api/gram/cli/internal/app/logging"
-	"github.com/speakeasy-api/gram/cli/internal/mcp"
+	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/gf/go/cli/internal/mcp"
 	"github.com/urfave/cli/v2"
 )
 

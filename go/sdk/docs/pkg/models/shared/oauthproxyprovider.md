@@ -1,0 +1,18 @@
+# OAuthProxyProvider
+
+
+## Fields
+
+| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `AuthorizationEndpoint`                                           | `string`                                                          | :heavy_check_mark:                                                | The authorization endpoint URL                                    |
+| `CreatedAt`                                                       | [time.Time](https://pkg.go.dev/time#Time)                         | :heavy_check_mark:                                                | When the OAuth proxy provider was created.                        |
+| `EnvironmentSlug`                                                 | `*string`                                                         | :heavy_minus_sign:                                                | A short url-friendly label that uniquely identifies a resource.   |
+| `GrantTypesSupported`                                             | []`string`                                                        | :heavy_minus_sign:                                                | The grant types supported by this provider                        |
+| `ID`                                                              | `string`                                                          | :heavy_check_mark:                                                | The ID of the OAuth proxy provider                                |
+| `ProviderType`                                                    | [shared.ProviderType](../../../pkg/models/shared/providertype.md) | :heavy_check_mark:                                                | The type of OAuth provider                                        |
+| `ScopesSupported`                                                 | []`string`                                                        | :heavy_minus_sign:                                                | The OAuth scopes supported by this provider                       |
+| `Slug`                                                            | `string`                                                          | :heavy_check_mark:                                                | A short url-friendly label that uniquely identifies a resource.   |
+| `TokenEndpoint`                                                   | `string`                                                          | :heavy_check_mark:                                                | The token endpoint URL                                            |
+| `TokenEndpointAuthMethodsSupported`                               | []`string`                                                        | :heavy_minus_sign:                                                | The token endpoint auth methods supported by this provider        |
+| `UpdatedAt`                                                       | [time.Time](https://pkg.go.dev/time#Time)                         | :heavy_check_mark:                                                | When the OAuth proxy provider was last updated.                   |

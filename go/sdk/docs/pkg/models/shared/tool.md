@@ -1,0 +1,14 @@
+# Tool
+
+A polymorphic tool - can be an HTTP tool, function tool, prompt template, or external MCP proxy
+
+
+## Fields
+
+| Field                                                                                        | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ExternalMcpToolDefinition`                                                                  | [*shared.ExternalMCPToolDefinition](../../../pkg/models/shared/externalmcptooldefinition.md) | :heavy_minus_sign:                                                                           | A proxy tool that references an external MCP server                                          |
+| `FunctionToolDefinition`                                                                     | [*shared.FunctionToolDefinition](../../../pkg/models/shared/functiontooldefinition.md)       | :heavy_minus_sign:                                                                           | A function tool                                                                              |
+| `HTTPToolDefinition`                                                                         | [*shared.HTTPToolDefinition](../../../pkg/models/shared/httptooldefinition.md)               | :heavy_minus_sign:                                                                           | An HTTP tool                                                                                 |
+| `PlatformToolDefinition`                                                                     | [*shared.PlatformToolDefinition](../../../pkg/models/shared/platformtooldefinition.md)       | :heavy_minus_sign:                                                                           | A platform-owned tool served directly by the platform                                        |
+| `PromptTemplate`                                                                             | [*shared.PromptTemplate](../../../pkg/models/shared/prompttemplate.md)                       | :heavy_minus_sign:                                                                           | A prompt template                                                                            |

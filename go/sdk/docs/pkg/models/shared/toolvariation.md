@@ -1,0 +1,23 @@
+# ToolVariation
+
+
+## Fields
+
+| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `Confirm`                                                    | `*string`                                                    | :heavy_minus_sign:                                           | The confirmation mode for the tool variation                 |
+| `ConfirmPrompt`                                              | `*string`                                                    | :heavy_minus_sign:                                           | The confirmation prompt for the tool variation               |
+| `CreatedAt`                                                  | `string`                                                     | :heavy_check_mark:                                           | The creation date of the tool variation                      |
+| `Description`                                                | `*string`                                                    | :heavy_minus_sign:                                           | The description of the tool variation                        |
+| `DestructiveHint`                                            | `*bool`                                                      | :heavy_minus_sign:                                           | Override: if true, the tool may perform destructive updates  |
+| `GroupID`                                                    | `string`                                                     | :heavy_check_mark:                                           | The ID of the tool variation group                           |
+| `ID`                                                         | `string`                                                     | :heavy_check_mark:                                           | The ID of the tool variation                                 |
+| `IdempotentHint`                                             | `*bool`                                                      | :heavy_minus_sign:                                           | Override: if true, repeated calls have no additional effect  |
+| `Name`                                                       | `*string`                                                    | :heavy_minus_sign:                                           | The name of the tool variation                               |
+| `OpenWorldHint`                                              | `*bool`                                                      | :heavy_minus_sign:                                           | Override: if true, the tool interacts with external entities |
+| `ReadOnlyHint`                                               | `*bool`                                                      | :heavy_minus_sign:                                           | Override: if true, the tool does not modify its environment  |
+| `SrcToolName`                                                | `string`                                                     | :heavy_check_mark:                                           | The name of the source tool                                  |
+| `SrcToolUrn`                                                 | `string`                                                     | :heavy_check_mark:                                           | The URN of the source tool                                   |
+| `Summarizer`                                                 | `*string`                                                    | :heavy_minus_sign:                                           | The summarizer of the tool variation                         |
+| `Title`                                                      | `*string`                                                    | :heavy_minus_sign:                                           | Display name override for the tool                           |
+| `UpdatedAt`                                                  | `string`                                                     | :heavy_check_mark:                                           | The last update date of the tool variation                   |

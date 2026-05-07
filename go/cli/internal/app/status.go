@@ -7,11 +7,11 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/speakeasy-api/gram/cli/internal/app/logging"
-	"github.com/speakeasy-api/gram/cli/internal/flags"
-	"github.com/speakeasy-api/gram/cli/internal/profile"
-	"github.com/speakeasy-api/gram/cli/internal/workflow"
-	"github.com/speakeasy-api/gram/server/gen/types"
+	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/gf/go/cli/internal/flags"
+	"github.com/speakeasy-api/gf/go/cli/internal/profile"
+	"github.com/speakeasy-api/gf/go/cli/internal/workflow"
+	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
 	"github.com/urfave/cli/v2"
 )
 
@@ -70,7 +70,7 @@ If no deployment ID is provided, shows the status of the latest deployment.`,
 	}
 }
 
-func printDeploymentStatus(deployment *types.Deployment) {
+func printDeploymentStatus(deployment *shared.Deployment) {
 	if deployment == nil {
 		fmt.Println("No deployments found for this project")
 		return
@@ -122,7 +122,7 @@ func printDeploymentStatus(deployment *types.Deployment) {
 
 }
 
-func printDeploymentStatusJSON(deployment *types.Deployment) error {
+func printDeploymentStatusJSON(deployment *shared.Deployment) error {
 	if deployment == nil {
 		fmt.Println("{}")
 		return nil
