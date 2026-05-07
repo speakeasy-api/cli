@@ -1,5 +1,11 @@
 # cli
 
+## 0.17.0
+
+### Minor Changes
+
+- Initial public release from the gf repository.
+
 ## 0.16.0
 
 ### Minor Changes
