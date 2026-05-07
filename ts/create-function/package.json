@@ -7,7 +7,7 @@
   "homepage": "https://github.com/speakeasy-api/gf",
   "repository": {
     "type": "git",
-    "url": "https://github.com/speakeasy-api/gf.git",
+    "url": "git+https://github.com/speakeasy-api/gf.git",
     "directory": "ts/create-function"
   },
   "author": "Georges Haidar <georges@speakeasyapi.dev>",

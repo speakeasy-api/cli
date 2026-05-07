@@ -13,11 +13,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/speakeasy-api/gf.git",
+    "url": "git+https://github.com/speakeasy-api/gf.git",
     "directory": "ts/functions"
   },
   "bin": {
-    "gf": "./dist/bin/cli.js"
+    "gf": "dist/bin/cli.js"
   },
   "scripts": {
     "test": "vitest run",
