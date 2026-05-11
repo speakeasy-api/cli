@@ -1,0 +1,24 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Gram-Public:
+        inputs:
+            - location: https://app.getgram.ai/openapi.yaml
+        overlays:
+            - location: .speakeasy/overlays/upload-bodies.yaml
+        transformations:
+            - filterOperations:
+                operations: validateAPIKey, uploadOpenAPIv3Asset, uploadFunctions, createDeployment, evolveDeployment, getDeployment, getLatestDeployment, getActiveDeployment, redeployDeployment, getToolset, listToolsets
+                include: true
+            - removeUnused: true
+            - cleanup: true
+        output: .speakeasy/out.openapi.yaml
+targets:
+    gram-functions-sdk:
+        target: typescript
+        source: Gram-Public
+        output: ts/functions/src/sdk
+    gram-go-sdk:
+        target: go
+        source: Gram-Public
+        output: go/sdk

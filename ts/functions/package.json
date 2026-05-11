@@ -1,0 +1,76 @@
+{
+  "type": "module",
+  "name": "@gram-ai/functions",
+  "version": "0.16.0",
+  "description": "",
+  "author": "Georges Haidar <georges@speakeasyapi.dev>",
+  "main": "dist/index.js",
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/speakeasy-api/gf",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/speakeasy-api/gf.git",
+    "directory": "ts/functions"
+  },
+  "bin": {
+    "gf": "dist/bin/cli.js"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.30.2",
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "src/**/*.ts",
+    "!src/**/*.test.ts"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./mcp": {
+      "import": "./dist/mcp.js",
+      "types": "./dist/mcp.d.ts"
+    },
+    "./build": {
+      "import": "./dist/build/index.js",
+      "types": "./dist/build/index.d.ts"
+    }
+  },
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.0"
+  },
+  "peerDependenciesMeta": {
+    "@modelcontextprotocol/sdk": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "@logtape/logtape": "^1.2.0",
+    "@logtape/pretty": "^1.2.0",
+    "@stricli/core": "^1.2.4",
+    "archiver": "^7.0.1",
+    "esbuild": "^0.27.0",
+    "zod": "^4",
+    "zx": "8.8.5-lite"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@types/archiver": "^6.0.3",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.13"
+  }
+}

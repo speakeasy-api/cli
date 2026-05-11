@@ -1,0 +1,9 @@
+# RedeployDeploymentSecurity
+
+
+## Fields
+
+| Field                                                                                                                | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                                            | [*operations.RedeployDeploymentSecurityOption1](../../../pkg/models/operations/redeploydeploymentsecurityoption1.md) | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |
+| `Option2`                                                                                                            | [*operations.RedeployDeploymentSecurityOption2](../../../pkg/models/operations/redeploydeploymentsecurityoption2.md) | :heavy_minus_sign:                                                                                                   | N/A                                                                                                                  |

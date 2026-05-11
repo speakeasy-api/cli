@@ -1,0 +1,13 @@
+# ToolEntry
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `Annotations`                                                            | [*shared.ToolAnnotations](../../../pkg/models/shared/toolannotations.md) | :heavy_minus_sign:                                                       | Tool annotations providing behavioral hints about the tool               |
+| `HTTPMethod`                                                             | `*string`                                                                | :heavy_minus_sign:                                                       | HTTP method for HTTP tools (GET, POST, PUT, PATCH, DELETE)               |
+| `ID`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | The ID of the tool                                                       |
+| `Name`                                                                   | `string`                                                                 | :heavy_check_mark:                                                       | The name of the tool                                                     |
+| `ToolUrn`                                                                | `string`                                                                 | :heavy_check_mark:                                                       | The URN of the tool                                                      |
+| `Type`                                                                   | [shared.ToolEntryType](../../../pkg/models/shared/toolentrytype.md)      | :heavy_check_mark:                                                       | N/A                                                                      |

@@ -1,0 +1,10 @@
+# ListToolsetsRequest
+
+
+## Fields
+
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `GramSession`      | `*string`          | :heavy_minus_sign: | Session header     |
+| `GramKey`          | `*string`          | :heavy_minus_sign: | API Key header     |
+| `GramProject`      | `*string`          | :heavy_minus_sign: | project header     |

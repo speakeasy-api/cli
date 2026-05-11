@@ -1,0 +1,11 @@
+.DS_Store
+
+# Go
+bin/
+coverage.out
+
+# TypeScript
+node_modules/
+dist/
+*.tsbuildinfo
+

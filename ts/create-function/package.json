@@ -1,0 +1,47 @@
+{
+  "type": "module",
+  "name": "@gram-ai/create-function",
+  "version": "0.16.0",
+  "description": "Build AI tools and deploy them to speakeasy.com",
+  "keywords": [],
+  "homepage": "https://github.com/speakeasy-api/gf",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/speakeasy-api/gf.git",
+    "directory": "ts/create-function"
+  },
+  "author": "Georges Haidar <georges@speakeasyapi.dev>",
+  "license": "MIT",
+  "main": "dist/main.js",
+  "bin": {
+    "create-function": "dist/main.js"
+  },
+  "scripts": {
+    "build": "tsc --noEmit false",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "dist",
+    "gram-template-*/**"
+  ],
+  "packageManager": "pnpm@10.30.2",
+  "dependencies": {
+    "@bomb.sh/args": "^0.3.1",
+    "@clack/prompts": "^1.0.0-alpha.6",
+    "zx": "8.8.5-lite"
+  },
+  "devDependencies": {
+    "@gram-ai/functions": "workspace:^",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "zod": "^4"
+  }
+}

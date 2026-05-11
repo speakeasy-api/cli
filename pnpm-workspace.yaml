@@ -1,0 +1,17 @@
+packages:
+  - go/cli
+  - ts/create-function
+  - ts/functions
+
+minimumReleaseAge: 10080
+
+minimumReleaseAgeExclude:
+  - "@changesets/*"
+  - "@modelcontextprotocol/sdk"
+  - "@types/*"
+  - "esbuild"
+  - "typescript"
+  - "vitest"
+
+onlyBuiltDependencies:
+  - esbuild
