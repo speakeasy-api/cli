@@ -4,10 +4,10 @@
   "version": "0.16.0",
   "description": "Build AI tools and deploy them to speakeasy.com",
   "keywords": [],
-  "homepage": "https://github.com/speakeasy-api/gf",
+  "homepage": "https://github.com/speakeasy-api/cli",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/speakeasy-api/gf.git",
+    "url": "git+https://github.com/speakeasy-api/cli.git",
     "directory": "ts/create-function"
   },
   "author": "Georges Haidar <georges@speakeasyapi.dev>",

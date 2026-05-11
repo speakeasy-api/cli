@@ -31,7 +31,7 @@ Speakeasy API Description: Speakeasy AI Control Plane is the tools platform for 
 
 To add the SDK as a dependency to your project:
 ```bash
-go get github.com/speakeasy-api/gf/go/sdk
+go get github.com/speakeasy-api/cli/go/sdk
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -45,8 +45,8 @@ package main
 
 import (
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
 	"log"
 	"os"
 )
@@ -104,8 +104,8 @@ package main
 
 import (
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
 	"log"
 	"os"
 )
@@ -183,9 +183,9 @@ package main
 
 import (
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/retry"
+	"github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/retry"
 	"log"
 	"os"
 	"pkg/models/operations"
@@ -236,9 +236,9 @@ package main
 
 import (
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/retry"
+	"github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/retry"
 	"log"
 	"os"
 )
@@ -308,9 +308,9 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/sdkerrors"
+	"github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/sdkerrors"
 	"log"
 	"os"
 )
@@ -370,8 +370,8 @@ package main
 
 import (
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
 	"log"
 	"os"
 )
@@ -426,7 +426,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/speakeasy-api/gf/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk"
 )
 
 var (

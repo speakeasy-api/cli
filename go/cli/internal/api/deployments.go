@@ -5,10 +5,10 @@ import (
 	"fmt"
 
 	"github.com/google/uuid"
-	"github.com/speakeasy-api/gf/go/cli/internal/secret"
-	sdk "github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
+	"github.com/speakeasy-api/cli/go/cli/internal/secret"
+	sdk "github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
 )
 
 type DeploymentsClientOptions struct {

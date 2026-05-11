@@ -6,7 +6,7 @@ The kind of prompt the template is used for
 
 ```go
 import (
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
 )
 
 value := shared.PromptTemplateKindPrompt

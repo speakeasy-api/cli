@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- Initial public release from the gf repository.
+- Initial public release from the cli repository.
 
 ## 0.16.0
 

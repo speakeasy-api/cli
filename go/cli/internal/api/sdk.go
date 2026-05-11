@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 
-	sdk "github.com/speakeasy-api/gf/go/sdk"
+	sdk "github.com/speakeasy-api/cli/go/sdk"
 )
 
 func newSDK(scheme string, host string) *sdk.Gram {

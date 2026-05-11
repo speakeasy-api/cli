@@ -7,13 +7,13 @@
   "main": "dist/index.js",
   "keywords": [],
   "license": "MIT",
-  "homepage": "https://github.com/speakeasy-api/gf",
+  "homepage": "https://github.com/speakeasy-api/cli",
   "engines": {
     "node": ">=22.18.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/speakeasy-api/gf.git",
+    "url": "git+https://github.com/speakeasy-api/cli.git",
     "directory": "ts/functions"
   },
   "bin": {

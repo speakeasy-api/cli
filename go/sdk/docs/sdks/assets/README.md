@@ -21,9 +21,9 @@ package main
 
 import(
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk"
 	"os"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
 	"log"
 )
 
@@ -88,9 +88,9 @@ package main
 
 import(
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk"
 	"os"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
 	"log"
 )
 

@@ -99,13 +99,13 @@ check deployment status.
 Install the CLI on macOS or Linux:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/speakeasy-api/gf/main/install-cli.sh | bash
+curl -fsSL https://raw.githubusercontent.com/speakeasy-api/cli/main/install-cli.sh | bash
 ```
 
 Install the CLI on Windows:
 
 ```powershell
-iwr -useb https://raw.githubusercontent.com/speakeasy-api/gf/main/install-cli.ps1 | iex
+iwr -useb https://raw.githubusercontent.com/speakeasy-api/cli/main/install-cli.ps1 | iex
 ```
 
 Authenticate before pushing deployments:
@@ -127,7 +127,7 @@ See the [CLI README](./go/cli/README.md) for local development and testing.
 
 - Slack: [Join our Slack](https://join.slack.com/t/speakeasy-dev/shared_invite/zt-3hudfoj4y-9EPqMmHIFhNiTtannqiV3Q) for support and discussions.
 - In-app: When using the Speakeasy application, you can engage with the core maintainers of the product.
-- GitHub: Contribute or report issues [on this repository](https://github.com/speakeasy-api/gf/issues/new).
+- GitHub: Contribute or report issues [on this repository](https://github.com/speakeasy-api/cli/issues/new).
 - Documentation: View the [Speakeasy docs](https://www.speakeasy.com/docs) for function framework guidance.
 
 ## Contributing

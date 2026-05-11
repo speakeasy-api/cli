@@ -8,9 +8,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/speakeasy-api/gf/go/cli/internal/api"
-	"github.com/speakeasy-api/gf/go/cli/internal/secret"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
+	"github.com/speakeasy-api/cli/go/cli/internal/api"
+	"github.com/speakeasy-api/cli/go/cli/internal/secret"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
 )
 
 // ToolsetInfo contains resolved MCP configuration information

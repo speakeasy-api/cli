@@ -8,10 +8,10 @@ import (
 
 	"github.com/urfave/cli/v2"
 
-	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
-	"github.com/speakeasy-api/gf/go/cli/internal/flags"
-	"github.com/speakeasy-api/gf/go/cli/internal/o11y"
-	"github.com/speakeasy-api/gf/go/cli/internal/profile"
+	"github.com/speakeasy-api/cli/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/cli/go/cli/internal/flags"
+	"github.com/speakeasy-api/cli/go/cli/internal/o11y"
+	"github.com/speakeasy-api/cli/go/cli/internal/profile"
 )
 
 func newApp() *cli.App {

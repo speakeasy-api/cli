@@ -12,8 +12,8 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/speakeasy-api/gf/go/sdk/pkg/optionalnullable"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/types"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/optionalnullable"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/types"
 )
 
 func PopulateQueryParams(_ context.Context, req *http.Request, queryParams interface{}, globals interface{}, allowEmptyValue map[string]struct{}) error {

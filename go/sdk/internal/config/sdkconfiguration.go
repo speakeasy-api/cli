@@ -4,7 +4,7 @@ package config
 
 import (
 	"context"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/retry"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/retry"
 	"net/http"
 	"time"
 )

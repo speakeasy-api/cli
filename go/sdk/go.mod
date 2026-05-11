@@ -1,4 +1,4 @@
-module github.com/speakeasy-api/gf/go/sdk
+module github.com/speakeasy-api/cli/go/sdk
 
 go 1.22
 

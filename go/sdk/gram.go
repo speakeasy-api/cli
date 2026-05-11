@@ -7,11 +7,11 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-api/gf/go/sdk/internal/config"
-	"github.com/speakeasy-api/gf/go/sdk/internal/hooks"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/retry"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/utils"
+	"github.com/speakeasy-api/cli/go/sdk/internal/config"
+	"github.com/speakeasy-api/cli/go/sdk/internal/hooks"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/retry"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -135,7 +135,7 @@ func New(opts ...SDKOption) *Gram {
 	sdk := &Gram{
 		SDKVersion: "0.1.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.1.0 2.881.17 0.0.1 github.com/speakeasy-api/gf/go/sdk",
+			UserAgent:  "speakeasy-sdk/go 0.1.0 2.881.17 0.0.1 github.com/speakeasy-api/cli/go/sdk",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),

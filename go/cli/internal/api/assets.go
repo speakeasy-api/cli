@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"io"
 
-	sdk "github.com/speakeasy-api/gf/go/sdk"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/operations"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
+	sdk "github.com/speakeasy-api/cli/go/sdk"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/operations"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
 )
 
 type AssetsClientOptions struct {

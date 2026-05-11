@@ -5,7 +5,7 @@ package hooks
 import (
 	"context"
 	"errors"
-	"github.com/speakeasy-api/gf/go/sdk/internal/config"
+	"github.com/speakeasy-api/cli/go/sdk/internal/config"
 	"net/http"
 )
 

@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	keys "github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
+	keys "github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
 )
 
 // Config represents the profile configuration file structure.

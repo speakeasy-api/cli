@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@gram-ai/gf-workspace",
+  "name": "@gram-ai/cli-workspace",
   "version": "1.0.0",
   "private": true,
   "scripts": {

@@ -73,7 +73,7 @@ detect_arch() {
 get_latest_tag() {
     info "Fetching latest version..."
 
-    local package_url="https://raw.githubusercontent.com/speakeasy-api/gf/refs/heads/main/go/cli/package.json"
+    local package_url="https://raw.githubusercontent.com/speakeasy-api/cli/refs/heads/main/go/cli/package.json"
     local response
 
     if command_exists curl; then
@@ -200,8 +200,8 @@ main() {
 
     # Construct download URLs
     local filename="gram_${os}_${arch}.zip"
-    local download_url="https://github.com/speakeasy-api/gf/releases/download/${tag_name}/${filename}"
-    local checksums_url="https://github.com/speakeasy-api/gf/releases/download/${tag_name}/checksums.txt"
+    local download_url="https://github.com/speakeasy-api/cli/releases/download/${tag_name}/${filename}"
+    local checksums_url="https://github.com/speakeasy-api/cli/releases/download/${tag_name}/checksums.txt"
 
     # Create temporary directory
     tmp_dir=$(mktemp -d)

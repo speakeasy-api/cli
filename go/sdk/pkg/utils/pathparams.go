@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/speakeasy-api/gf/go/sdk/pkg/optionalnullable"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/types"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/optionalnullable"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/types"
 )
 
 func GenerateURL(_ context.Context, serverURL, path string, pathParams interface{}, globals interface{}) (string, error) {

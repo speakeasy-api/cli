@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/speakeasy-api/gf/go/cli/internal/profile"
-	"github.com/speakeasy-api/gf/go/cli/internal/secret"
+	"github.com/speakeasy-api/cli/go/cli/internal/profile"
+	"github.com/speakeasy-api/cli/go/cli/internal/secret"
 	"github.com/urfave/cli/v2"
 )
 

@@ -9,7 +9,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/speakeasy-api/gf/go/sdk/pkg/optionalnullable"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/optionalnullable"
 )
 
 func PopulateHeaders(_ context.Context, req *http.Request, headers interface{}, globals interface{}) {

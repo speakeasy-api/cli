@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/speakeasy-api/gf/go/sdk/pkg/utils"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/utils"
 )
 
 // Tool - A polymorphic tool - can be an HTTP tool, function tool, prompt template, or external MCP proxy

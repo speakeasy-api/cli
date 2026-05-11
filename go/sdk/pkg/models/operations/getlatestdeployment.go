@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
-	"github.com/speakeasy-api/gf/go/sdk/pkg/utils"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/utils"
 	"net/http"
 )
 

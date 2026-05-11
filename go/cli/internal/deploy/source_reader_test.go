@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/speakeasy-api/gf/go/cli/internal/must"
+	"github.com/speakeasy-api/cli/go/cli/internal/must"
 	"github.com/stretchr/testify/require"
 )
 

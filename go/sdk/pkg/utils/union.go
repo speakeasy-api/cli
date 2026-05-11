@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/speakeasy-api/gf/go/sdk/pkg/types"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/types"
 )
 
 // UnionCandidate represents a candidate type during union deserialization

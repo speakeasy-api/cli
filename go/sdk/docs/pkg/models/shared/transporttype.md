@@ -6,7 +6,7 @@ The transport type used to connect to the MCP server
 
 ```go
 import (
-	"github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
 )
 
 value := shared.TransportTypeStreamableHTTP

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
-	"github.com/speakeasy-api/gf/go/cli/internal/mcp"
+	"github.com/speakeasy-api/cli/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/cli/go/cli/internal/mcp"
 	"github.com/urfave/cli/v2"
 )
 

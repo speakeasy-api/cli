@@ -14,7 +14,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/speakeasy-api/gf/go/sdk/pkg/types"
+	"github.com/speakeasy-api/cli/go/sdk/pkg/types"
 )
 
 func MarshalJSON(v interface{}, tag reflect.StructTag, topLevel bool) ([]byte, error) {

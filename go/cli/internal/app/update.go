@@ -16,14 +16,14 @@ import (
 
 	"github.com/Masterminds/semver/v3"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/speakeasy-api/gf/go/cli/internal/api"
-	"github.com/speakeasy-api/gf/go/cli/internal/app/logging"
+	"github.com/speakeasy-api/cli/go/cli/internal/api"
+	"github.com/speakeasy-api/cli/go/cli/internal/app/logging"
 	"github.com/urfave/cli/v2"
 )
 
 const (
-	githubReleasesAPI = "https://api.github.com/repos/speakeasy-api/gf/releases"
-	githubDownloadURL = "https://github.com/speakeasy-api/gf/releases/download"
+	githubReleasesAPI = "https://api.github.com/repos/speakeasy-api/cli/releases"
+	githubDownloadURL = "https://github.com/speakeasy-api/cli/releases/download"
 )
 
 type installMethod string
@@ -52,7 +52,7 @@ func newUpdateCommand() *cli.Command {
 
 This command supports multiple installation methods:
   - Homebrew (macOS/Linux): Automatically runs 'brew upgrade speakeasy-api/tap/gram'
-  - Aqua: Automatically runs 'aqua upgrade speakeasy-api/gf/gram'
+  - Aqua: Automatically runs 'aqua upgrade speakeasy-api/cli/gram'
   - Manual installation: Downloads and replaces the current binary
 
 The command will detect your installation method and use the appropriate update mechanism.`,
@@ -265,7 +265,7 @@ func updateViaHomebrew(ctx context.Context, logger *slog.Logger) error {
 func updateViaAqua(ctx context.Context, logger *slog.Logger) error {
 	fmt.Println("💧 Updating via Aqua...")
 
-	cmd := exec.CommandContext(ctx, "aqua", "upgrade", "speakeasy-api/gf/gram")
+	cmd := exec.CommandContext(ctx, "aqua", "upgrade", "speakeasy-api/cli/gram")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 

@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	keys "github.com/speakeasy-api/gf/go/sdk/pkg/models/shared"
+	keys "github.com/speakeasy-api/cli/go/sdk/pkg/models/shared"
 )
 
 // Save writes the profile configuration to disk.
