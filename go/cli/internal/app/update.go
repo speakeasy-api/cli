@@ -47,8 +47,8 @@ type githubRelease struct {
 func newUpdateCommand() *cli.Command {
 	return &cli.Command{
 		Name:  "update",
-		Usage: "Update the Gram CLI to the latest version",
-		Description: `Update the Gram CLI to the latest available version.
+		Usage: "Update the Speakeasy CLI to the latest version",
+		Description: `Update the Speakeasy CLI to the latest available version.
 
 This command supports multiple installation methods:
   - Homebrew (macOS/Linux): Automatically runs 'brew upgrade speakeasy-api/tap/gram'
@@ -79,7 +79,7 @@ func doUpdate(c *cli.Context) error {
 	currentVersion := Version
 	if currentVersion == "dev" {
 		logger.InfoContext(ctx, "Running development build, skipping update check")
-		fmt.Println("⚠️  You are running a development build of gram CLI")
+		fmt.Println("⚠️  You are running a development build of Gram CLI")
 		fmt.Println("   Development builds cannot be updated via this command")
 		return nil
 	}
@@ -257,7 +257,7 @@ func updateViaHomebrew(ctx context.Context, logger *slog.Logger) error {
 	}
 
 	successStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("2")).Bold(true)
-	fmt.Println(successStyle.Render("✓ Successfully updated gram CLI via Homebrew"))
+	fmt.Println(successStyle.Render("✓ Successfully updated Gram CLI via Homebrew"))
 	fmt.Println("  Run 'gram --version' to verify the new version")
 	return nil
 }
@@ -274,7 +274,7 @@ func updateViaAqua(ctx context.Context, logger *slog.Logger) error {
 	}
 
 	successStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("2")).Bold(true)
-	fmt.Println(successStyle.Render("✓ Successfully updated gram CLI via Aqua"))
+	fmt.Println(successStyle.Render("✓ Successfully updated Gram CLI via Aqua"))
 	fmt.Println("  Run 'gram --version' to verify the new version")
 	return nil
 }
@@ -330,7 +330,7 @@ func updateManual(ctx context.Context, logger *slog.Logger, release *githubRelea
 	}
 
 	successStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("2")).Bold(true)
-	fmt.Println(successStyle.Render(fmt.Sprintf("✓ Successfully updated gram CLI to version %s", version)))
+	fmt.Println(successStyle.Render(fmt.Sprintf("✓ Successfully updated Gram CLI to version %s", version)))
 	fmt.Println("  Run 'gram --version' to verify the new version")
 	return nil
 }

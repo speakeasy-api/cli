@@ -1,4 +1,4 @@
-# Gram CLI
+# Speakeasy CLI
 
 ## Local Development
 
@@ -13,7 +13,7 @@
    - `cd go/cli`
    - `go run main.go status`
 
-### Testing Gram Functions
+### Testing Speakeasy Functions
 
 1. Stage zip
    - `go run main.go stage function --slug test-fn --location fixtures/example.zip`

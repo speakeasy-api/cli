@@ -1,4 +1,4 @@
-// Package profile provides profile-based configuration management for the Gram
+// Package profile provides profile-based configuration management for the Speakeasy
 // CLI.
 package profile
 

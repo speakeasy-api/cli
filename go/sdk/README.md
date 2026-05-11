@@ -2,13 +2,13 @@
 
 Placeholder for the OAS-generated Go SDK used by `go/cli`.
 
-This directory should stay generated-client-only. Do not import Gram server packages here.
+This directory should stay generated-client-only. Do not import Speakeasy server packages here.
 
 
 <!-- Start Summary [summary] -->
 ## Summary
 
-Gram API Description: Gram is the tools platform for AI agents
+Speakeasy API Description: Speakeasy AI Control Plane is the tools platform for AI agents
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->

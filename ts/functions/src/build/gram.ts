@@ -186,7 +186,7 @@ export async function deployFunction(logger: Logger, config: ParsedUserConfig) {
 
     if (gramPath.exitCode !== 0) {
       throw new Error(
-        `Gram CLI not found. Please install it from https://www.speakeasy.com/docs/gram/command-line/installation.`,
+        `Gram CLI not found. Please install it from https://www.speakeasy.com/docs.`,
       );
     }
   }

@@ -1,7 +1,7 @@
 # Gram Function MCP Template
 
 This template allows you to use the official [MCP TypeScript SDK][mcp-ts] to
-build and deploy [Gram Functions](https://getgram.ai).
+build and deploy [Gram Functions](https://www.speakeasy.com).
 
 [mcp-ts]: https://github.com/modelcontextprotocol/typescript-sdk
 
@@ -12,7 +12,7 @@ interacting with hosted databases.
 ## Prerequisites
 
 - [Node.js](https://nodejs.org) version 22.18.0 or later
-- [Gram CLI](https://www.speakeasy.com/docs/gram/command-line/use)
+- [Gram CLI](https://www.speakeasy.com/docs)
 
 ## Quick start
 
@@ -22,7 +22,7 @@ To get started, install dependencies and run the development server:
 pnpm install
 ```
 
-To build a zip file that can be deployed to Gram, run:
+To build a zip file that can be deployed to the Gram AI Control Plane, run:
 
 ```bash
 pnpm build

@@ -406,7 +406,7 @@ const g = new Gram()
 export const handleToolCall = g.handleToolCall;
 ```
 
-You can also call tools programmatically:
+You can also call tools through scripts:
 
 ```typescript
 const response = await g.handleToolCall({
@@ -436,7 +436,7 @@ setTimeout(() => controller.abort(), 5000);
 
 For tools that need to access OAuth-protected APIs, Gram Functions supports automatic OAuth token injection. Configure the `authInput` option when creating your Gram instance, and the OAuth access token will be available through `ctx.env`.
 
-For full setup instructions including configuring OAuth providers, see the [Add OAuth documentation](https://www.getgram.ai/docs/gram-functions/add-oauth).
+For full setup instructions including configuring OAuth providers, see the [Add OAuth documentation](https://www.speakeasy.com/docs).
 
 ### Configuring OAuth
 
@@ -469,7 +469,7 @@ const gram = new Gram({
 });
 ```
 
-When deployed to Gram, the platform handles the OAuth flow with users and automatically injects the access token into the specified environment variable before each tool execution.
+When deployed to the Gram AI Control Plane, the platform handles the OAuth flow with users and automatically injects the access token into the specified environment variable before each tool execution.
 
 ## Type Safety
 

@@ -24,7 +24,7 @@ func newApp() *cli.App {
 
 	return &cli.App{
 		Name:    "gram",
-		Usage:   "A command line interface for the Gram platform. Get started at https://docs.getgram.ai/",
+		Usage:   "A command line interface for the Speakeasy AI Control Plane. Get started at https://www.speakeasy.com/docs",
 		Version: fmt.Sprintf("%s (%s)", Version, shortSha),
 		Commands: []*cli.Command{
 			newAuthCommand(),

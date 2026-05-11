@@ -112,16 +112,16 @@ func DoAuth(ctx context.Context, opts AuthOptions) (*AuthResult, error) {
 func newAuthCommand() *cli.Command {
 	return &cli.Command{
 		Name:  "auth",
-		Usage: "Authenticate with Gram",
+		Usage: "Authenticate with Speakeasy",
 		Flags: []cli.Flag{
 			&cli.StringFlag{
 				Name:    "api-url",
-				Usage:   "URL of the Gram API server",
+				Usage:   "URL of the Speakeasy API server",
 				EnvVars: []string{"GRAM_API_URL"},
 			},
 			&cli.StringFlag{
 				Name:    "dashboard-url",
-				Usage:   "URL of the Gram dashboard for authentication",
+				Usage:   "URL of the Speakeasy dashboard for authentication",
 				EnvVars: []string{"GRAM_SITE_URL"},
 			},
 		},

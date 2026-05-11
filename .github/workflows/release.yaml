@@ -65,7 +65,7 @@ jobs:
   release-cli:
     needs: [release]
     if: needs.release.outputs.published == 'true' && contains(fromJSON(needs.release.outputs.publishedPackages).*.name, 'cli')
-    name: Release Gram CLI
+    name: Release Speakeasy CLI
     runs-on: ubuntu-latest
     permissions:
       contents: write

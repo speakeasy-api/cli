@@ -17,7 +17,7 @@ import (
 func newInstallClaudeDesktopCommand() *cli.Command {
 	return &cli.Command{
 		Name:  "claude-desktop",
-		Usage: "Generate a .mcpb file for installing a Gram toolset in Claude Desktop (standalone desktop app)",
+		Usage: "Generate a .mcpb file for installing a Speakeasy toolset in Claude Desktop (standalone desktop app)",
 		Flags: append(baseInstallFlags, &cli.StringFlag{
 			Name:  "output-dir",
 			Usage: "Directory to save the .mcpb file (defaults to Downloads folder)",

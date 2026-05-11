@@ -17,7 +17,7 @@ import (
 	"net/url"
 )
 
-// Assets - Manages assets used by Gram projects.
+// Assets - Manages assets used by Speakeasy projects.
 type Assets struct {
 	rootSDK          *Gram
 	sdkConfiguration config.SDKConfiguration
@@ -33,7 +33,7 @@ func newAssets(rootSDK *Gram, sdkConfig config.SDKConfiguration, hooks *hooks.Ho
 }
 
 // UploadFunctions - uploadFunctions assets
-// Upload functions to Gram.
+// Upload functions to the Speakeasy AI Control Plane.
 func (s *Assets) UploadFunctions(ctx context.Context, request operations.UploadFunctionsRequest, security operations.UploadFunctionsSecurity, opts ...operations.Option) (*operations.UploadFunctionsResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -303,7 +303,7 @@ func (s *Assets) UploadFunctions(ctx context.Context, request operations.UploadF
 }
 
 // UploadOpenAPIv3 - uploadOpenAPIv3 assets
-// Upload an OpenAPI v3 document to Gram.
+// Upload an OpenAPI v3 document to the Speakeasy AI Control Plane.
 func (s *Assets) UploadOpenAPIv3(ctx context.Context, request operations.UploadOpenAPIv3AssetRequest, security operations.UploadOpenAPIv3AssetSecurity, opts ...operations.Option) (*operations.UploadOpenAPIv3AssetResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

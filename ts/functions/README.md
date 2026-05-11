@@ -1,7 +1,7 @@
 # Gram Functions for TypeScript
 
 Gram Functions are small pieces of code that represent LLM tools. They are
-deployed to [Gram](https://getgram.ai) and are then exposed to LLMs via MCP
+deployed to [Gram](https://www.speakeasy.com) and are then exposed to LLMs via MCP
 servers.
 
 This library provides a small framework for authoring Gram Functions in
@@ -506,7 +506,7 @@ const gram = new Gram()
 export default gram;
 ```
 
-You can also call tools programmatically:
+You can also call tools through scripts:
 
 ```typescript
 const response = await gram.handleToolCall({

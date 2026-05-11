@@ -34,11 +34,11 @@ func newDeployments(rootSDK *Gram, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // Active - getActiveDeployment deployments
 // Get the active deployment for a project.
-func (s *Deployments) Active(ctx context.Context, security operations.GetActiveDeploymentSecurity, gramKey *string, gramSession *string, gramProject *string, opts ...operations.Option) (*operations.GetActiveDeploymentResponse, error) {
+func (s *Deployments) Active(ctx context.Context, security operations.GetActiveDeploymentSecurity, speakeasyKey *string, speakeasySession *string, speakeasyProject *string, opts ...operations.Option) (*operations.GetActiveDeploymentResponse, error) {
 	request := operations.GetActiveDeploymentRequest{
-		GramKey:     gramKey,
-		GramSession: gramSession,
-		GramProject: gramProject,
+		GramKey:     speakeasyKey,
+		GramSession: speakeasySession,
+		GramProject: speakeasyProject,
 	}
 
 	o := operations.Options{}
@@ -573,11 +573,11 @@ func (s *Deployments) Create(ctx context.Context, request operations.CreateDeplo
 
 // EvolveDeployment - evolve deployments
 // Create a new deployment with additional or updated tool sources.
-func (s *Deployments) EvolveDeployment(ctx context.Context, security operations.EvolveDeploymentSecurity, body shared.EvolveForm, gramKey *string, gramSession *string, gramProject *string, opts ...operations.Option) (*operations.EvolveDeploymentResponse, error) {
+func (s *Deployments) EvolveDeployment(ctx context.Context, security operations.EvolveDeploymentSecurity, body shared.EvolveForm, speakeasyKey *string, speakeasySession *string, speakeasyProject *string, opts ...operations.Option) (*operations.EvolveDeploymentResponse, error) {
 	request := operations.EvolveDeploymentRequest{
-		GramKey:     gramKey,
-		GramSession: gramSession,
-		GramProject: gramProject,
+		GramKey:     speakeasyKey,
+		GramSession: speakeasySession,
+		GramProject: speakeasyProject,
 		Body:        body,
 	}
 
@@ -850,12 +850,12 @@ func (s *Deployments) EvolveDeployment(ctx context.Context, security operations.
 
 // GetByID - getDeployment deployments
 // Get a deployment by its ID.
-func (s *Deployments) GetByID(ctx context.Context, security operations.GetDeploymentSecurity, id string, gramKey *string, gramSession *string, gramProject *string, opts ...operations.Option) (*operations.GetDeploymentResponse, error) {
+func (s *Deployments) GetByID(ctx context.Context, security operations.GetDeploymentSecurity, id string, speakeasyKey *string, speakeasySession *string, speakeasyProject *string, opts ...operations.Option) (*operations.GetDeploymentResponse, error) {
 	request := operations.GetDeploymentRequest{
 		ID:          id,
-		GramKey:     gramKey,
-		GramSession: gramSession,
-		GramProject: gramProject,
+		GramKey:     speakeasyKey,
+		GramSession: speakeasySession,
+		GramProject: speakeasyProject,
 	}
 
 	o := operations.Options{}
@@ -1124,11 +1124,11 @@ func (s *Deployments) GetByID(ctx context.Context, security operations.GetDeploy
 
 // Latest - getLatestDeployment deployments
 // Get the latest deployment for a project.
-func (s *Deployments) Latest(ctx context.Context, security operations.GetLatestDeploymentSecurity, gramKey *string, gramSession *string, gramProject *string, opts ...operations.Option) (*operations.GetLatestDeploymentResponse, error) {
+func (s *Deployments) Latest(ctx context.Context, security operations.GetLatestDeploymentSecurity, speakeasyKey *string, speakeasySession *string, speakeasyProject *string, opts ...operations.Option) (*operations.GetLatestDeploymentResponse, error) {
 	request := operations.GetLatestDeploymentRequest{
-		GramKey:     gramKey,
-		GramSession: gramSession,
-		GramProject: gramProject,
+		GramKey:     speakeasyKey,
+		GramSession: speakeasySession,
+		GramProject: speakeasyProject,
 	}
 
 	o := operations.Options{}
@@ -1393,11 +1393,11 @@ func (s *Deployments) Latest(ctx context.Context, security operations.GetLatestD
 
 // RedeployDeployment - redeploy deployments
 // Redeploys an existing deployment.
-func (s *Deployments) RedeployDeployment(ctx context.Context, security operations.RedeployDeploymentSecurity, body shared.RedeployRequestBody, gramKey *string, gramSession *string, gramProject *string, opts ...operations.Option) (*operations.RedeployDeploymentResponse, error) {
+func (s *Deployments) RedeployDeployment(ctx context.Context, security operations.RedeployDeploymentSecurity, body shared.RedeployRequestBody, speakeasyKey *string, speakeasySession *string, speakeasyProject *string, opts ...operations.Option) (*operations.RedeployDeploymentResponse, error) {
 	request := operations.RedeployDeploymentRequest{
-		GramKey:     gramKey,
-		GramSession: gramSession,
-		GramProject: gramProject,
+		GramKey:     speakeasyKey,
+		GramSession: speakeasySession,
+		GramProject: speakeasyProject,
 		Body:        body,
 	}
 

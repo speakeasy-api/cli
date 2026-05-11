@@ -47,16 +47,16 @@ func Float64(f float64) *float64 { return &f }
 // Pointer provides a helper function to return a pointer to a type
 func Pointer[T any](v T) *T { return &v }
 
-// Gram API Description: Gram is the tools platform for AI agents
+// Speakeasy API Description: Speakeasy AI Control Plane is the tools platform for AI agents
 type Gram struct {
 	SDKVersion string
-	// Manages assets used by Gram projects.
+	// Manages assets used by Speakeasy projects.
 	Assets *Assets
 	// Manages deployments of tools from upstream sources.
 	Deployments *Deployments
 	// Managing system api keys.
 	Keys *Keys
-	// Managed toolsets for gram AI consumers.
+	// Managed toolsets for Speakeasy AI consumers.
 	Toolsets *Toolsets
 
 	sdkConfiguration config.SDKConfiguration

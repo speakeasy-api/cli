@@ -17,7 +17,7 @@ import (
 	"net/url"
 )
 
-// Toolsets - Managed toolsets for gram AI consumers.
+// Toolsets - Managed toolsets for Speakeasy AI consumers.
 type Toolsets struct {
 	rootSDK          *Gram
 	sdkConfiguration config.SDKConfiguration
@@ -34,12 +34,12 @@ func newToolsets(rootSDK *Gram, sdkConfig config.SDKConfiguration, hooks *hooks.
 
 // GetBySlug - getToolset toolsets
 // Get detailed information about a toolset including full HTTP tool definitions
-func (s *Toolsets) GetBySlug(ctx context.Context, security operations.GetToolsetSecurity, slug string, gramSession *string, gramKey *string, gramProject *string, opts ...operations.Option) (*operations.GetToolsetResponse, error) {
+func (s *Toolsets) GetBySlug(ctx context.Context, security operations.GetToolsetSecurity, slug string, speakeasySession *string, speakeasyKey *string, speakeasyProject *string, opts ...operations.Option) (*operations.GetToolsetResponse, error) {
 	request := operations.GetToolsetRequest{
 		Slug:        slug,
-		GramSession: gramSession,
-		GramKey:     gramKey,
-		GramProject: gramProject,
+		GramSession: speakeasySession,
+		GramKey:     speakeasyKey,
+		GramProject: speakeasyProject,
 	}
 
 	o := operations.Options{}
@@ -308,11 +308,11 @@ func (s *Toolsets) GetBySlug(ctx context.Context, security operations.GetToolset
 
 // List - listToolsets toolsets
 // List all toolsets for a project
-func (s *Toolsets) List(ctx context.Context, security operations.ListToolsetsSecurity, gramSession *string, gramKey *string, gramProject *string, opts ...operations.Option) (*operations.ListToolsetsResponse, error) {
+func (s *Toolsets) List(ctx context.Context, security operations.ListToolsetsSecurity, speakeasySession *string, speakeasyKey *string, speakeasyProject *string, opts ...operations.Option) (*operations.ListToolsetsResponse, error) {
 	request := operations.ListToolsetsRequest{
-		GramSession: gramSession,
-		GramKey:     gramKey,
-		GramProject: gramProject,
+		GramSession: speakeasySession,
+		GramKey:     speakeasyKey,
+		GramProject: speakeasyProject,
 	}
 
 	o := operations.Options{}

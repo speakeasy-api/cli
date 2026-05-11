@@ -177,10 +177,10 @@ func ensureConfigFileExists(configPath string) error {
 func newStageCommand() *cli.Command {
 	return &cli.Command{
 		Name:  "stage",
-		Usage: "Stage an artifact for deployment to Gram",
+		Usage: "Stage an artifact for deployment to Speakeasy",
 		Description: `
 The stage command will gradually build a deployment config that can later be
-passed to "gram push". It is used to add Gram Functions zip files and OpenAPI
+passed to "gram push". It is used to add Speakeasy Functions zip files and OpenAPI
 YAML/JSON documents.
 `[1:],
 		Flags: []cli.Flag{
@@ -207,13 +207,13 @@ YAML/JSON documents.
 func newStageFunctionCommand() *cli.Command {
 	return &cli.Command{
 		Name:  "function",
-		Usage: "Stage a Gram Functions zip file for deployment",
+		Usage: "Stage a Speakeasy Functions zip file for deployment",
 		Flags: []cli.Flag{
 			sourceNameFlag,
 			sourceSlugFlag,
 			&cli.StringFlag{
 				Name:     "location",
-				Usage:    "Location to a zip file containing Gram Functions code. This can be a local file or a URL.",
+				Usage:    "Location to a zip file containing Speakeasy Functions code. This can be a local file or a URL.",
 				Required: true,
 			},
 			&cli.StringFlag{
@@ -309,7 +309,7 @@ func validateExistingStageFile(configPath string) error {
 
 func appendSourcesToConfig(configPath string, sources []deploy.Source) error {
 	// #nosec G304 - this function is only editing the file contents and not
-	// passing its contents onwards to the rest of the program in an unsafe way.
+	// passing its contents onwards to the rest of the application in an unsafe way.
 	current, err := os.ReadFile(configPath)
 	if err != nil {
 		return fmt.Errorf("failed to read config file: %w", err)
@@ -336,7 +336,7 @@ func appendSourcesToConfig(configPath string, sources []deploy.Source) error {
 	config.Sources = deduped
 
 	// #nosec G304 - this function is only updating a file contents and not
-	// passing its contents onwards to the rest of the program in an unsafe way.
+	// passing its contents onwards to the rest of the application in an unsafe way.
 	file, err := os.OpenFile(configPath, os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		return fmt.Errorf("failed to open config file: %w", err)

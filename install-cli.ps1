@@ -3,9 +3,9 @@
 
 <#
 .SYNOPSIS
-    Installs the Gram CLI on Windows
+    Installs the Speakeasy CLI on Windows
 .DESCRIPTION
-    Downloads and installs the latest version of Gram CLI from GitHub releases
+    Downloads and installs the latest version of Speakeasy CLI from GitHub releases
 .EXAMPLE
     .\install-cli.ps1
 .EXAMPLE
@@ -225,7 +225,7 @@ function Main {
             & gram --version
             Write-Host ""
             Write-Host "Success! " -ForegroundColor Green -NoNewline
-            Write-Host "Gram CLI has been installed."
+            Write-Host "Speakeasy CLI has been installed."
             Write-Host "Run 'gram --help' to get started."
         }
         else {

@@ -52,7 +52,7 @@ brews:
       owner: speakeasy-api
       name: homebrew-tap
     homepage: https://app.getgram.ai
-    description: The Gram CLI for interacting with the Gram Platform
+    description: The Speakeasy CLI for interacting with the Speakeasy AI Control Plane
     license: Apache-2.0
     test: |
       system "#{bin}/gram --version"
@@ -62,7 +62,7 @@ brews:
       owner: speakeasy-api
       name: homebrew-tap
     homepage: https://app.getgram.ai
-    description: The Gram CLI for interacting with the Gram Platform
+    description: The Speakeasy CLI for interacting with the Speakeasy AI Control Plane
     license: Apache-2.0
     test: |
       system "#{bin}/gram --version"

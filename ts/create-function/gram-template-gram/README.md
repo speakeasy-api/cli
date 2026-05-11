@@ -1,6 +1,6 @@
 # Hello from Gram Functions!
 
-This project builds and deploys [Gram Functions](https://getgram.ai) using a
+This project builds and deploys [Gram Functions](https://www.speakeasy.com) using a
 tiny TypeScript framework that looks like this:
 
 ```ts
@@ -31,7 +31,7 @@ To get started, install dependencies and run the development server:
 pnpm install
 ```
 
-To build a zip file that can be deployed to Gram, run:
+To build a zip file that can be deployed to the Gram AI Control Plane, run:
 
 ```bash
 pnpm build

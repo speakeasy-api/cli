@@ -2,7 +2,7 @@
 
 ## Overview
 
-Manages assets used by Gram projects.
+Manages assets used by Speakeasy projects.
 
 ### Available Operations
 
@@ -11,7 +11,7 @@ Manages assets used by Gram projects.
 
 ## UploadFunctions
 
-Upload functions to Gram.
+Upload functions to the Speakeasy AI Control Plane.
 
 ### Example Usage
 
@@ -78,7 +78,7 @@ func main() {
 
 ## UploadOpenAPIv3
 
-Upload an OpenAPI v3 document to Gram.
+Upload an OpenAPI v3 document to the Speakeasy AI Control Plane.
 
 ### Example Usage
 

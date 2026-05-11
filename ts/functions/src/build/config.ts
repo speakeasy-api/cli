@@ -30,11 +30,11 @@ export type UserConfig = {
    */
   deployStagingFile?: string | undefined;
   /**
-   * The number of instances to run for the function when deployed to Gram.
+   * The number of instances to run for the function when deployed to the Speakeasy AI Control Plane.
    */
   scale?: number | undefined;
   /**
-   * The memory limit in MiB of function runner machines when deployed to Gram.
+   * The memory limit in MiB of function runner machines when deployed to the Speakeasy AI Control Plane.
    */
   memoryMiB?: number | undefined;
 

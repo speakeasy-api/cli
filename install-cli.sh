@@ -242,7 +242,7 @@ main() {
     # Verify installation
     if command_exists gram; then
         gram --version
-        printf "\n${GREEN}Success!${NC} Gram CLI has been installed.\n"
+        printf "\n${GREEN}Success!${NC} Speakeasy CLI has been installed.\n"
         printf "Run 'gram --help' to get started.\n"
     else
         printf "\n${YELLOW}Note:${NC} You may need to add $install_dir to your PATH\n"

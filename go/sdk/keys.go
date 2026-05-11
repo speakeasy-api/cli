@@ -34,9 +34,9 @@ func newKeys(rootSDK *Gram, sdkConfig config.SDKConfiguration, hooks *hooks.Hook
 
 // Validate - verifyKey keys
 // Verify an api key
-func (s *Keys) Validate(ctx context.Context, security operations.ValidateAPIKeySecurity, gramKey *string, opts ...operations.Option) (*operations.ValidateAPIKeyResponse, error) {
+func (s *Keys) Validate(ctx context.Context, security operations.ValidateAPIKeySecurity, speakeasyKey *string, opts ...operations.Option) (*operations.ValidateAPIKeyResponse, error) {
 	request := operations.ValidateAPIKeyRequest{
-		GramKey: gramKey,
+		GramKey: speakeasyKey,
 	}
 
 	o := operations.Options{}
